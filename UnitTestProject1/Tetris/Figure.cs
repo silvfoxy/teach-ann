@@ -11,7 +11,7 @@ namespace UnitTestProject1.Tetris
         public Pattern Pattern;
         public int RotationNumber;
 
-        public TetrisCup CurrentRotation 
+        public ITetrisCup CurrentRotation 
         { 
             get 
             {
@@ -27,7 +27,8 @@ namespace UnitTestProject1.Tetris
 
     public interface IFigure
     {
-        TetrisCup CurrentRotation { get; }
+        ITetrisCup CurrentRotation { get; }
         void NextRotation();
+
     }
 }

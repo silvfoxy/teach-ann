@@ -41,9 +41,10 @@ namespace UnitTestProject1.Tetris
         {
             Figure.NextRotation();
         }
-        public bool NextFigure(Figure figure) 
+        public bool NextFigure(IFigure figure)
         {
-            throw new NotImplementedException();
+            int middle = this.Cup.Width/2 - figure.CurrentRotation.Width/2;
+            return this.Cup.Fits(figure.CurrentRotation, new Offset(middle, 0));
         }
     }
 }

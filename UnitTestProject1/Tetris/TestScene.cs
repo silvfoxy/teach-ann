@@ -85,7 +85,7 @@ namespace UnitTestProject1.Tetris
             scene.Offset.X.Should().Be(3);
         }
         [TestMethod]
-        public void MoveLeft_Should_Deccrement_OffsetX_If_Fits_Return_True()
+        public void MoveLeft_If_Fits_Return_True_Should_Deccrement_OffsetX()
         {
             var scene = new Scene();
             scene.Cup = A.Fake<ITetrisCup>();
@@ -97,7 +97,7 @@ namespace UnitTestProject1.Tetris
             scene.Offset.X.Should().Be(2);
         }
         [TestMethod]
-        public void MoveLeft_Should_Not_Change_OffsetX_If_Fits_Return_False()
+        public void MoveLeft_If_Fits_Return_False_Should_Not_Change_OffsetX()
         {
             var scene = new Scene();
             scene.Cup = A.Fake<ITetrisCup>();
@@ -107,6 +107,20 @@ namespace UnitTestProject1.Tetris
                 .Returns(false);
             scene.MoveLeft();
             scene.Offset.X.Should().Be(3);
+        }
+
+        [TestMethod]
+        public void NextFigure_When_The_Given_Figure_Fits_Should_Return_True()
+        {
+            var scene = new Scene();
+            scene.Cup = A.Fake<ITetrisCup>();
+            var figure = A.Fake<IFigure>();
+            A.CallTo(() => scene.Cup.Width).Returns(10);
+            A.CallTo(() => figure.CurrentRotation.Width).Returns(4);
+            A.CallTo(() => scene.Cup.Fits(figure.CurrentRotation, new Offset(3, 0)))
+                .Returns(true);
+            scene.NextFigure(figure).Should().Be(true);
+
         }
     }
 }
