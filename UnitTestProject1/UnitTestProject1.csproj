@@ -63,6 +63,7 @@
     <Compile Include="Lesson2.cs" />
     <Compile Include="Organization.cs" />
     <Compile Include="Tetris\Figure.cs" />
+    <Compile Include="Tetris\Game.cs" />
     <Compile Include="Tetris\Pattern.cs" />
     <Compile Include="Tetris\Point.cs" />
     <Compile Include="TestBalanceCalculator.cs" />

@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace UnitTestProject1.Tetris
 {
-    public class Figure: IFigure
+    public class Figure : IFigure
     {
-        public Pattern Pattern;
-        public int RotationNumber;
+        public Pattern Pattern { get; set; }
 
-        public ITetrisCup CurrentRotation 
-        { 
-            get 
+        public int RotationNumber { get; set; }
+
+        public ITetrisCup CurrentRotation
+        {
+            get
             {
                 return Pattern.Rotations[RotationNumber];
-            } 
+            }
         }
 
         public void NextRotation()
@@ -29,6 +30,7 @@ namespace UnitTestProject1.Tetris
     {
         ITetrisCup CurrentRotation { get; }
         void NextRotation();
-
+        Pattern Pattern { get; set; }
+        int RotationNumber { get; set; }
     }
 }

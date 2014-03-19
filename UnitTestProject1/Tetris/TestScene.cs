@@ -37,7 +37,7 @@ namespace UnitTestProject1.Tetris
         }
 
         [TestMethod]
-        public void MoveDown_Should_Increment_OffsetY_If_Fits_Return_True()
+        public void MoveDown_When_Fits_Return_True_Should_Increment_OffsetY()
         {
             var scene = new Scene();
             scene.Cup = A.Fake<ITetrisCup>();
@@ -49,7 +49,7 @@ namespace UnitTestProject1.Tetris
             scene.Offset.Y.Should().Be(6);
         }
         [TestMethod]
-        public void MoveDown_Should_Not_Change_OffsetY_If_Fits_Return_False()
+        public void MoveDown_When_Fits_Return_False_Should_Not_Change_OffsetY()
         {
             var scene = new Scene();
             scene.Cup = A.Fake<ITetrisCup>();
@@ -61,7 +61,7 @@ namespace UnitTestProject1.Tetris
             scene.Offset.Y.Should().Be(5);
         }
         [TestMethod]
-        public void MoveRight_Should_Increment_OffsetX_If_Fits_Return_True()
+        public void MoveRight_When_Fits_Return_True_Should_Increment_OffsetX()
         {
             var scene = new Scene();
             scene.Cup = A.Fake<ITetrisCup>();
@@ -73,7 +73,7 @@ namespace UnitTestProject1.Tetris
             scene.Offset.X.Should().Be(4);
         }
         [TestMethod]
-        public void MoveRight_Should_Not_Change_OffsetX_If_Fits_Return_False()
+        public void MoveRight_When_Fits_Return_False_Should_Not_Change_OffsetX()
         {
             var scene = new Scene();
             scene.Cup = A.Fake<ITetrisCup>();
@@ -85,7 +85,7 @@ namespace UnitTestProject1.Tetris
             scene.Offset.X.Should().Be(3);
         }
         [TestMethod]
-        public void MoveLeft_If_Fits_Return_True_Should_Deccrement_OffsetX()
+        public void MoveLeft_When_Fits_Return_True_Should_Deccrement_OffsetX()
         {
             var scene = new Scene();
             scene.Cup = A.Fake<ITetrisCup>();
@@ -97,7 +97,7 @@ namespace UnitTestProject1.Tetris
             scene.Offset.X.Should().Be(2);
         }
         [TestMethod]
-        public void MoveLeft_If_Fits_Return_False_Should_Not_Change_OffsetX()
+        public void MoveLeft_When_Fits_Return_False_Should_Not_Change_OffsetX()
         {
             var scene = new Scene();
             scene.Cup = A.Fake<ITetrisCup>();
@@ -121,6 +121,20 @@ namespace UnitTestProject1.Tetris
                 .Returns(true);
             scene.NextFigure(figure).Should().Be(true);
 
+        }
+
+        [TestMethod]
+        public void Print_Should_Copy_CurrentRotation_To_The_Cup()
+        {
+            var scene = new Scene();
+            scene.Cup = A.Fake<ITetrisCup>();
+            scene.Figure = A.Fake<IFigure>();
+            scene.Offset = new Offset(9,2);
+            var dummyCup = A.Dummy<ITetrisCup>();
+            A.CallTo(() => scene.Figure.CurrentRotation).Returns(dummyCup);
+            scene.Print();
+            A.CallTo(() => scene.Cup.CopyFrom(dummyCup, new Offset(9, 2)))
+                .MustHaveHappened();
         }
     }
 }
