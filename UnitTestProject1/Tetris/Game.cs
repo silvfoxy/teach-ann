@@ -5,11 +5,13 @@ namespace UnitTestProject1.Tetris
     public class Game
     {
         public IScene Scene;
+        private readonly IRandomFigureSelector _randomFigureSelector;
 
         public Game(IScene scene, IRandomFigureSelector randomFigureSelector)
         {
             scene.NextFigure(randomFigureSelector.RandomFigure());
             Scene = scene;
+            _randomFigureSelector = randomFigureSelector;
         }
 
         /// <summary>
@@ -23,7 +25,10 @@ namespace UnitTestProject1.Tetris
         {
             var isPossible = Scene.MoveDown();
             if (!isPossible)
+            {
                 Scene.Print();
+                Scene.NextFigure(_randomFigureSelector.RandomFigure());
+            }
         }
 
     }
