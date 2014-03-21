@@ -21,7 +21,9 @@ namespace UnitTestProject1.Tetris
         /// </summary>
         public void Tick()
         {
-            Scene.MoveDown();
+            var isPossible = Scene.MoveDown();
+            if (!isPossible)
+                Scene.Print();
         }
 
     }

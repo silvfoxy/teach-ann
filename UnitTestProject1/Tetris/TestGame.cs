@@ -40,6 +40,16 @@ namespace UnitTestProject1.Tetris
             var game = new Game(scene, randomFigureSelector);
             A.CallTo(()=>scene.NextFigure(dummyFigure)).MustHaveHappened();
         }
-        
+
+        [TestMethod]
+        public void Tick_When_MoveDown_Is_Not_Possible_Should_Print()
+        {
+            var scene = A.Fake<IScene>();
+            var randomFigureSelector = A.Fake<IRandomFigureSelector>();
+            var game = new Game(scene, randomFigureSelector);
+            A.CallTo(() => scene.MoveDown()).Returns(false);
+            game.Tick();
+            A.CallTo(()=> scene.Print()).MustHaveHappened();
+        }
     }
 }
