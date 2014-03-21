@@ -16,11 +16,12 @@ namespace UnitTestProject1.Tetris
         void Rotate();
         bool NextFigure(IFigure figure);
         void Print();
+        ITetrisCup Cup { get; set; }
     }
 
     public class Scene : IScene
     {
-        public ITetrisCup Cup;
+        public ITetrisCup Cup { get; set; }
         public IFigure Figure;
         public Offset Offset;
 
