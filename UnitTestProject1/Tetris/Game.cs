@@ -4,7 +4,14 @@ namespace UnitTestProject1.Tetris
 {
     public class Game
     {
-        public Scene Scene;
+        public IScene Scene;
+
+        public Game(IScene scene, IRandomFigureSelector randomFigureSelector)
+        {
+            scene.NextFigure(randomFigureSelector.RandomFigure());
+            Scene = scene;
+        }
+
         /// <summary>
         /// occures every time timer ticks
         /// 1. moves figure down
@@ -14,7 +21,8 @@ namespace UnitTestProject1.Tetris
         /// </summary>
         public void Tick()
         {
-            throw new NotImplementedException();
+            Scene.MoveDown();
         }
+
     }
 }

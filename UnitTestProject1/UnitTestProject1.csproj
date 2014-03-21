@@ -73,6 +73,7 @@
     <Compile Include="TestList.cs" />
     <Compile Include="Tetris\Scene.cs" />
     <Compile Include="Tetris\TestFigure.cs" />
+    <Compile Include="Tetris\TestGame.cs" />
     <Compile Include="Tetris\TestScene.cs" />
     <Compile Include="Tetris\TestTetrisCup.cs" />
     <Compile Include="Tetris\TetrisCup.cs" />

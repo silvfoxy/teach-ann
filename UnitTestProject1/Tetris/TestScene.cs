@@ -136,5 +136,11 @@ namespace UnitTestProject1.Tetris
             A.CallTo(() => scene.Cup.CopyFrom(dummyCup, new Offset(9, 2)))
                 .MustHaveHappened();
         }
+
+        /*[TestMethod]
+        public void RandomFigure_Should_Return_Figure()
+        {
+            
+        }*/
     }
 }
