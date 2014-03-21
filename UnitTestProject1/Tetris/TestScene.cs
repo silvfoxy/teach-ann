@@ -45,7 +45,7 @@ namespace UnitTestProject1.Tetris
             scene.Offset = new Offset(3, 5);
             A.CallTo(() => scene.Cup.Fits(scene.Figure.CurrentRotation, new Offset(3, 6)))
                 .Returns(true);
-            scene.MoveDown();
+            scene.MoveDown().Should().BeTrue();
             scene.Offset.Y.Should().Be(6);
         }
         [TestMethod]
@@ -57,7 +57,7 @@ namespace UnitTestProject1.Tetris
             scene.Offset = new Offset(3, 5);
             A.CallTo(() => scene.Cup.Fits(scene.Figure.CurrentRotation, new Offset(3, 6)))
                 .Returns(false);
-            scene.MoveDown();
+            scene.MoveDown().Should().BeFalse();
             scene.Offset.Y.Should().Be(5);
         }
         [TestMethod]
