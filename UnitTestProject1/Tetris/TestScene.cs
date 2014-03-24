@@ -130,9 +130,19 @@ namespace UnitTestProject1.Tetris
             var dummyFigure = A.Dummy<IFigure>();
             A.CallTo(() => scene.Cup.Fits(null, null))
                 .WithAnyArguments().Returns(true);
-            scene.NextFigure(dummyFigure).Should().Be(true);
+            scene.NextFigure(dummyFigure);
             scene.Figure.Should().Be(dummyFigure);
-
+        }
+        [TestMethod]
+        public void NextFigure_When_The_Given_Figure_DoesNot_Fit_ShouldNot_Assign_It()
+        {
+            var scene = new Scene();
+            scene.Cup = A.Fake<ITetrisCup>();
+            var dummyFigure = A.Dummy<IFigure>();
+            A.CallTo(() => scene.Cup.Fits(null, null))
+                .WithAnyArguments().Returns(false);
+            scene.NextFigure(dummyFigure);
+            scene.Figure.Should().NotBe(dummyFigure);
         }
 
         [TestMethod]

@@ -63,9 +63,11 @@ namespace UnitTestProject1.Tetris
 
         public bool NextFigure(IFigure figure)
         {
-            this.Figure = figure;
-            int middle = this.Cup.Width/2 - figure.CurrentRotation.Width/2;
-            return this.Cup.Fits(figure.CurrentRotation, new Offset(middle, 0));
+            int middle = this.Cup.Width / 2 - figure.CurrentRotation.Width / 2;
+            bool fits = this.Cup.Fits(figure.CurrentRotation, new Offset(middle, 0));
+            if (fits)
+                this.Figure = figure;
+            return fits;
         }
 
         public void Print()
@@ -81,11 +83,11 @@ namespace UnitTestProject1.Tetris
 
     public class RandomFigureSelector : IRandomFigureSelector
     {
-    public IFigure RandomFigure()
+        public IFigure RandomFigure()
         {
             var rnd = new Random();
             int patternNumber = rnd.Next(7);
-            Pattern randomFigurePattern = 
+            Pattern randomFigurePattern =
                 new PatternLibrary().Patterns[patternNumber];
             var randomFigure = new Figure();
             randomFigure.RotationNumber = rnd.Next(4);
