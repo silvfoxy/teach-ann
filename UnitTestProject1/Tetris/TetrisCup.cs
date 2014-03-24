@@ -53,8 +53,8 @@ namespace UnitTestProject1
         public void CopyFrom(ITetrisCup upperLayer1, Offset offset)
         {
             var upperLayer = (TetrisCup)upperLayer1;
-            for (int i = 0; i < _size.Height; i++)
-                for (int j = 0; j < _size.Width; j++)
+            for (int i = 0; i < upperLayer.Height; i++)
+                for (int j = 0; j < upperLayer.Width; j++)
                     if (upperLayer._colors[j, i] != 0)
                         this._colors[j+offset.X, i+offset.Y] = upperLayer._colors[j, i];
 

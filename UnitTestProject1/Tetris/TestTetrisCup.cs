@@ -77,6 +77,13 @@ namespace UnitTestProject1
             lowerLayer.GetColor(new Point(1, 1)).Should().Be(0);
         }
         [TestMethod]
+        public void CopyFrom_When_LowerLayer_Is_Bigger_Then_UpperLayer_Should_Not_Throw()
+        {
+            TetrisCup upperLayer = new TetrisCup(1, 1, new[] { new Point(0, 0) });
+            TetrisCup lowerLayer = new TetrisCup(2, 2, new Point[] { });
+            lowerLayer.CopyFrom(upperLayer, new Offset(0, 0));
+        }
+        [TestMethod]
         public void CopyFrom_When_Cell_In_UpperLayer_Is_Empty_Should_Not_Reset_LowerLayer_Cell()
         {
             TetrisCup upperLayer = new TetrisCup(2, 2, new[] { new Point(1, 0) });
@@ -135,5 +142,6 @@ namespace UnitTestProject1
             TetrisCup lower = new TetrisCup(3, 2, new[] { new Point(2, 0) });
             upper.Fits(lower, new Offset(1, 0)).Should().BeFalse();
         }
+
     }
 }
