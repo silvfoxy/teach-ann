@@ -117,7 +117,7 @@ namespace UnitTestProject1.Tetris
             var figure = A.Fake<IFigure>();
             A.CallTo(() => scene.Cup.Width).Returns(10);
             A.CallTo(() => figure.CurrentRotation.Width).Returns(4);
-            A.CallTo(() => scene.Cup.Fits(figure.CurrentRotation, new Offset(3, 0)))
+            A.CallTo(() => figure.CurrentRotation.Fits(scene.Cup, new Offset(3, 0)))
                 .Returns(true);
             scene.NextFigure(figure).Should().Be(true);
 
@@ -128,7 +128,7 @@ namespace UnitTestProject1.Tetris
             var scene = new Scene();
             scene.Cup = A.Fake<ITetrisCup>();
             var dummyFigure = A.Dummy<IFigure>();
-            A.CallTo(() => scene.Cup.Fits(null, null))
+            A.CallTo(() => dummyFigure.CurrentRotation.Fits(null, null))
                 .WithAnyArguments().Returns(true);
             scene.NextFigure(dummyFigure);
             scene.Figure.Should().Be(dummyFigure);
@@ -152,7 +152,7 @@ namespace UnitTestProject1.Tetris
             var figure = A.Fake<IFigure>();
             A.CallTo(() => scene.Cup.Width).Returns(10);
             A.CallTo(() => figure.CurrentRotation.Width).Returns(4);
-            A.CallTo(() => scene.Cup.Fits(figure.CurrentRotation, new Offset(3, 0)))
+            A.CallTo(() => figure.CurrentRotation.Fits(scene.Cup, new Offset(3, 0)))
                 .Returns(true);
             scene.NextFigure(figure);
             scene.Offset.Should().Be(new Offset(3, 0));
