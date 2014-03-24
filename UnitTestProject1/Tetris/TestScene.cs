@@ -144,6 +144,32 @@ namespace UnitTestProject1.Tetris
             scene.NextFigure(dummyFigure);
             scene.Figure.Should().NotBe(dummyFigure);
         }
+        [TestMethod]
+        public void NextFigure_When_The_Given_Figure_Fits_Should_Assign_Offset()
+        {
+            var scene = new Scene();
+            scene.Cup = A.Fake<ITetrisCup>();
+            var figure = A.Fake<IFigure>();
+            A.CallTo(() => scene.Cup.Width).Returns(10);
+            A.CallTo(() => figure.CurrentRotation.Width).Returns(4);
+            A.CallTo(() => scene.Cup.Fits(figure.CurrentRotation, new Offset(3, 0)))
+                .Returns(true);
+            scene.NextFigure(figure);
+            scene.Offset.Should().Be(new Offset(3, 0));
+        }
+        [TestMethod]
+        public void NextFigure_When_The_Given_Figure_DoesNot_Fit_ShouldNot_Assign_Offset()
+        {
+            var scene = new Scene();
+            scene.Cup = A.Fake<ITetrisCup>();
+            var figure = A.Fake<IFigure>();
+            A.CallTo(() => scene.Cup.Width).Returns(10);
+            A.CallTo(() => figure.CurrentRotation.Width).Returns(4);
+            A.CallTo(() => scene.Cup.Fits(figure.CurrentRotation, new Offset(3, 0)))
+                .Returns(false);
+            scene.NextFigure(figure);
+            scene.Offset.Should().NotBe(new Offset(3, 0));
+        }
 
         [TestMethod]
         public void Print_Should_Copy_CurrentRotation_To_The_Cup()
@@ -151,7 +177,7 @@ namespace UnitTestProject1.Tetris
             var scene = new Scene();
             scene.Cup = A.Fake<ITetrisCup>();
             scene.Figure = A.Fake<IFigure>();
-            scene.Offset = new Offset(9,2);
+            scene.Offset = new Offset(9, 2);
             var dummyCup = A.Dummy<ITetrisCup>();
             A.CallTo(() => scene.Figure.CurrentRotation).Returns(dummyCup);
             scene.Print();
