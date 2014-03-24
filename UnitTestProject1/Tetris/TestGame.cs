@@ -67,9 +67,8 @@ namespace UnitTestProject1.Tetris
         public void Constructor_Should_Initialize_Cup_With_Width_20_And_Height_20()
         {
             var scene = A.Fake<IScene>();
-            var dummyFigure = A.Dummy<IFigure>();
             var randomFigureSelector = A.Fake<IRandomFigureSelector>();
-            var game = new Game(scene, randomFigureSelector);
+            new Game(scene, randomFigureSelector);
             scene.Cup.Height.Should().Be(20);
             scene.Cup.Width.Should().Be(20);
             for (int x=0; x<scene.Cup.Width; x++)

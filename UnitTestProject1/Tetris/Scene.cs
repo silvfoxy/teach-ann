@@ -63,6 +63,7 @@ namespace UnitTestProject1.Tetris
 
         public bool NextFigure(IFigure figure)
         {
+            this.Figure = figure;
             int middle = this.Cup.Width/2 - figure.CurrentRotation.Width/2;
             return this.Cup.Fits(figure.CurrentRotation, new Offset(middle, 0));
         }

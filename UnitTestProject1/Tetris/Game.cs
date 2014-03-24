@@ -9,8 +9,8 @@ namespace UnitTestProject1.Tetris
 
         public Game(IScene scene, IRandomFigureSelector randomFigureSelector)
         {
-            scene.NextFigure(randomFigureSelector.RandomFigure());
             scene.Cup = new TetrisCup(20,20, new Point[] {});
+            scene.NextFigure(randomFigureSelector.RandomFigure());
             Scene = scene;
             _randomFigureSelector = randomFigureSelector;
         }

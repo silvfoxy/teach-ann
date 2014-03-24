@@ -122,6 +122,18 @@ namespace UnitTestProject1.Tetris
             scene.NextFigure(figure).Should().Be(true);
 
         }
+        [TestMethod]
+        public void NextFigure_When_The_Given_Figure_Fits_Should_Assign_It()
+        {
+            var scene = new Scene();
+            scene.Cup = A.Fake<ITetrisCup>();
+            var dummyFigure = A.Dummy<IFigure>();
+            A.CallTo(() => scene.Cup.Fits(null, null))
+                .WithAnyArguments().Returns(true);
+            scene.NextFigure(dummyFigure).Should().Be(true);
+            scene.Figure.Should().Be(dummyFigure);
+
+        }
 
         [TestMethod]
         public void Print_Should_Copy_CurrentRotation_To_The_Cup()
