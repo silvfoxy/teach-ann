@@ -51,7 +51,7 @@ namespace UnitTestProject1
             return cloneTetrisCup;
         }
         public void CopyFrom(ITetrisCup upperLayer1, Offset offset)
-        {
+        {//илья уверен, что ф-я недотестирована
             var upperLayer = (TetrisCup)upperLayer1;
             for (int i = 0; i < upperLayer.Height; i++)
                 for (int j = 0; j < upperLayer.Width; j++)
@@ -60,7 +60,7 @@ namespace UnitTestProject1
 
         }
         public bool Fits(ITetrisCup intoCup1, Offset offset)
-        {//дз: заменить Point offset на Offset offset и использовать операторы
+        {
             var intoCup = (TetrisCup) intoCup1;
             if (intoCup._size.StrictlyLess(this._size+offset))
                 return false;
@@ -101,6 +101,30 @@ namespace UnitTestProject1
         public static Size operator +(Offset left, Size right)
         {
             return new Size(left.X + right.Width, left.Y + right.Height);
+        }
+        public static Size operator -(Size left, Offset right)
+        {
+            return new Size(left.Width - right.X, left.Height - right.Y);
+        }
+        public static Size operator -(Offset left, Size right)
+        {
+            return new Size(left.X - right.Width, left.Y - right.Height);
+        }
+        public static Point operator +(Point left, Offset right)
+        {
+            return new Point(left.X + right.X, left.Y + right.Y);
+        }
+        public static Point operator +(Offset left, Point right)
+        {
+            return new Point(left.X + right.X, left.Y + right.Y);
+        }
+        public static Point operator -(Point left, Offset right)
+        {
+            return new Point(left.X - right.X, left.Y - right.Y);
+        }
+        public static Point operator -(Offset left, Point right)
+        {
+            return new Point(left.X - right.X, left.Y - right.Y);
         }
         public override bool Equals(object obj)
         {

@@ -31,11 +31,15 @@ namespace TetrisWpf
         private void UpdateScreen()
         {
             _uniformGrid.Children.Clear();
-            var color = Game.Scene.Cup.GetColor(new Point(0, 0));
-            _uniformGrid.Children.Add(new Rectangle
+            for (int i = 0; i < 20; i++)
+                for (int j = 0; j < 20; j++)
             {
-                Fill = color == 0?Brushes.Transparent : Brushes.Red,
-            });
+                var color = Game.Scene.Cup.GetColor(new Point(i, j));
+                var rectangle = new Rectangle();
+                if (color == 0) rectangle.Fill = Brushes.Transparent;
+                else rectangle.Fill = Brushes.Red;
+                _uniformGrid.Children.Add(rectangle);
+            }
         }
     }
 }

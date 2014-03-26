@@ -16,6 +16,7 @@ namespace UnitTestProject1.Tetris
         void Rotate();
         bool NextFigure(IFigure figure);
         void Print();
+        int GetColor(Point point);
         ITetrisCup Cup { get; set; }
     }
 
@@ -76,6 +77,11 @@ namespace UnitTestProject1.Tetris
         public void Print()
         {
             Cup.CopyFrom(Figure.CurrentRotation, Offset);
+        }
+
+        public int GetColor(Point point)
+        {
+            return this.Figure.CurrentRotation.GetColor(point-this.Offset);
         }
     }
 
