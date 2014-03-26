@@ -186,7 +186,7 @@ namespace UnitTestProject1.Tetris
         }
 
         [TestMethod]
-        public void GetColor_Should_Return_Color_From_Figure()
+        public void GetColor_Should_Return_Color_From_Cup_Or_Figure()
         {
             var scene = new Scene();
             scene.Figure = A.Fake<IFigure>();
