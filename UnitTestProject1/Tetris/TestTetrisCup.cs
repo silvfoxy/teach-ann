@@ -17,30 +17,30 @@ namespace UnitTestProject1
             TetrisCup tetrisCup = new TetrisCup(10, 20,
                 new[] { new Point(3, 4), new Point(4, 3) });
             Assert.AreEqual(-1, tetrisCup.GetColor(new Point(3, 4)));
-            TetrisCup clone = tetrisCup.Clone();
+            var clone = tetrisCup.Clone();
         }
         [TestMethod]
         public void Clone_Should_Not_Return_Null()
         {
-            TetrisCup tetrisCup = new TetrisCup(10, 20,
+            ITetrisCup tetrisCup = new TetrisCup(10, 20,
                 new[] { new Point(3, 4), new Point(4, 3) });
-            TetrisCup cloneTetrisCup = tetrisCup.Clone();
+            var cloneTetrisCup = tetrisCup.Clone();
             Assert.IsNotNull(cloneTetrisCup);
         }
         [TestMethod]
         public void Clone_Should_Create_Another_Object()
         {
-            TetrisCup tetrisCup = new TetrisCup(10, 20,
+            ITetrisCup tetrisCup = new TetrisCup(10, 20,
                 new[] { new Point(3, 4), new Point(4, 3) });
-            TetrisCup cloneTetrisCup = tetrisCup.Clone();
+            var cloneTetrisCup = tetrisCup.Clone();
             Assert.AreNotSame(tetrisCup, cloneTetrisCup);
         }
         [TestMethod]
         public void Clone_Should_Replace_Minus_Ones_With_Random_Colors()
         {
-            TetrisCup tetrisCup = new TetrisCup(2, 2,
+            ITetrisCup tetrisCup = new TetrisCup(2, 2,
                 new[] { new Point(0, 1), new Point(1, 0) });
-            TetrisCup cloneTetrisCup = tetrisCup.Clone();
+            var cloneTetrisCup = tetrisCup.Clone();
             cloneTetrisCup.GetColor(new Point(0, 1)).Should().BeInRange(1, 16);
             cloneTetrisCup.GetColor(new Point(1, 0)).Should().BeInRange(1, 16);
             cloneTetrisCup.GetColor(new Point(0, 0)).Should().Be(0);
@@ -49,10 +49,10 @@ namespace UnitTestProject1
         [TestMethod]
         public void Clone_Should_Copy_Colors()
         {
-            TetrisCup tetrisCup = new TetrisCup(2, 2,
+            ITetrisCup tetrisCup = new TetrisCup(2, 2,
                 new[] { new Point(0, 1), new Point(1, 0) });
             tetrisCup = tetrisCup.Clone();
-            TetrisCup cloneTetrisCup = tetrisCup.Clone();
+            var cloneTetrisCup = tetrisCup.Clone();
             cloneTetrisCup.GetColor(new Point(0, 1)).Should().Be(tetrisCup.GetColor(new Point(0, 1)));
             cloneTetrisCup.GetColor(new Point(1, 0)).Should().Be(tetrisCup.GetColor(new Point(1, 0)));
             cloneTetrisCup.GetColor(new Point(0, 0)).Should().Be(0);

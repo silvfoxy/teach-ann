@@ -81,7 +81,11 @@ namespace UnitTestProject1.Tetris
 
         public int GetColor(Point point)
         {
-            return this.Figure.CurrentRotation.GetColor(point-this.Offset);
+            /*if (point > Offset)
+                return this.Figure.CurrentRotation.GetColor(point - this.Offset);*/
+            ITetrisCup cloneCup = this.Cup.Clone();
+            cloneCup.CopyFrom(Figure.CurrentRotation, Offset);
+            return cloneCup.GetColor(point);
         }
     }
 
