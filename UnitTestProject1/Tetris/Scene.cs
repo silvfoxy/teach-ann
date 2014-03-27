@@ -29,7 +29,7 @@ namespace UnitTestProject1.Tetris
         public void DropDown()
         {
             int y;
-            for (y = Offset.Y; Cup.Fits(Figure.CurrentRotation, new Offset(Offset.X, y + 1)); y++)
+            for (y = Offset.Y; Figure.CurrentRotation.Fits(Cup, new Offset(Offset.X, y + 1)); y++)
             {
             }
             Offset = new Offset(Offset.X, y);
@@ -37,19 +37,19 @@ namespace UnitTestProject1.Tetris
 
         public void MoveLeft()
         {
-            if (Cup.Fits(Figure.CurrentRotation, new Offset(Offset.X - 1, Offset.Y)))
+            if (Figure.CurrentRotation.Fits(Cup, new Offset(Offset.X - 1, Offset.Y)))
                 Offset = new Offset(Offset.X - 1, Offset.Y);
         }
 
         public void MoveRight()
         {
-            if (Cup.Fits(Figure.CurrentRotation, new Offset(Offset.X + 1, Offset.Y)))
+            if (Figure.CurrentRotation.Fits(Cup, new Offset(Offset.X + 1, Offset.Y)))
                 Offset = new Offset(Offset.X + 1, Offset.Y);
         }
 
         public bool MoveDown()
         {
-            if (Cup.Fits(Figure.CurrentRotation, new Offset(Offset.X, Offset.Y + 1)))
+            if (Figure.CurrentRotation.Fits(Cup, new Offset(Offset.X, Offset.Y + 1)))
             {
                 Offset = new Offset(Offset.X, Offset.Y + 1);
                 return true;

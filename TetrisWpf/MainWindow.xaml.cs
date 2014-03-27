@@ -34,7 +34,7 @@ namespace TetrisWpf
             for (int i = 0; i < 20; i++)
                 for (int j = 0; j < 20; j++)
             {
-                var color = Game.Scene.Cup.GetColor(new Point(i, j));
+                var color = Game.Scene.GetColor(new Point(i, j));
                 var rectangle = new Rectangle();
                 if (color == 0) rectangle.Fill = Brushes.Transparent;
                 else rectangle.Fill = Brushes.Red;

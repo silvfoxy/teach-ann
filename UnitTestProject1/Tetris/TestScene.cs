@@ -19,9 +19,9 @@ namespace UnitTestProject1.Tetris
             scene.Cup = A.Fake<ITetrisCup>();
             scene.Figure = A.Fake<IFigure>();
             scene.Offset = new Offset(3, 5);
-            A.CallTo(() => scene.Cup.Fits(scene.Figure.CurrentRotation, new Offset(3, 6)))
+            A.CallTo(() => scene.Figure.CurrentRotation.Fits(scene.Cup, new Offset(3, 6)))
                 .Returns(true);
-            A.CallTo(() => scene.Cup.Fits(scene.Figure.CurrentRotation, new Offset(3, 7)))
+            A.CallTo(() => scene.Figure.CurrentRotation.Fits(scene.Cup, new Offset(3, 7)))
                 .Returns(false);
             scene.DropDown();
             scene.Offset.Y.Should().Be(6);
@@ -43,7 +43,7 @@ namespace UnitTestProject1.Tetris
             scene.Cup = A.Fake<ITetrisCup>();
             scene.Figure = A.Fake<IFigure>();
             scene.Offset = new Offset(3, 5);
-            A.CallTo(() => scene.Cup.Fits(scene.Figure.CurrentRotation, new Offset(3, 6)))
+            A.CallTo(() => scene.Figure.CurrentRotation.Fits(scene.Cup, new Offset(3, 6)))
                 .Returns(true);
             scene.MoveDown().Should().BeTrue();
             scene.Offset.Y.Should().Be(6);
@@ -67,7 +67,7 @@ namespace UnitTestProject1.Tetris
             scene.Cup = A.Fake<ITetrisCup>();
             scene.Figure = A.Fake<IFigure>();
             scene.Offset = new Offset(3, 5);
-            A.CallTo(() => scene.Cup.Fits(scene.Figure.CurrentRotation, new Offset(4, 5)))
+            A.CallTo(() => scene.Figure.CurrentRotation.Fits(scene.Cup, new Offset(4, 5)))
                 .Returns(true);
             scene.MoveRight();
             scene.Offset.X.Should().Be(4);
@@ -91,7 +91,7 @@ namespace UnitTestProject1.Tetris
             scene.Cup = A.Fake<ITetrisCup>();
             scene.Figure = A.Fake<IFigure>();
             scene.Offset = new Offset(3, 5);
-            A.CallTo(() => scene.Cup.Fits(scene.Figure.CurrentRotation, new Offset(2, 5)))
+            A.CallTo(() => scene.Figure.CurrentRotation.Fits(scene.Cup, new Offset(2, 5)))
                 .Returns(true);
             scene.MoveLeft();
             scene.Offset.X.Should().Be(2);
