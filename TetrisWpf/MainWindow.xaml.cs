@@ -54,7 +54,7 @@ namespace TetrisWpf
             for (int i = 0; i < 20; i++)
                 for (int j = 0; j < 20; j++)
             {
-                var color = Game.Scene.GetColor(new Point(j, i));
+                var color = Game.Scene.GetColorOfPoint(new Point(j, i));
                 var rectangle = new Rectangle();
                 rectangle.Fill = Brushes[color];
                 _uniformGrid.Children.Add(rectangle);

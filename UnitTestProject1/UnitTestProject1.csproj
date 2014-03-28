@@ -74,6 +74,7 @@
     <Compile Include="Tetris\Scene.cs" />
     <Compile Include="Tetris\TestFigure.cs" />
     <Compile Include="Tetris\TestGame.cs" />
+    <Compile Include="Tetris\TestPattern.cs" />
     <Compile Include="Tetris\TestScene.cs" />
     <Compile Include="Tetris\TestTetrisCup.cs" />
     <Compile Include="Tetris\TetrisCup.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>

@@ -8,7 +8,20 @@ namespace UnitTestProject1.Tetris
 {
     public class Pattern
     {
-        public TetrisCup[] Rotations;
+        public ITetrisCup[] Rotations;
+        private static Random rnd = new Random();
+
+        public Pattern Clone(int color)
+        {
+            //int color = rnd.Next(16) + 1;
+            var pattern = new Pattern();
+            pattern.Rotations = new TetrisCup[4];
+            for (int i = 0; i < 4; i++)
+            {
+                pattern.Rotations[i] = pattern.Rotations[i].Clone(color);
+            }
+            return pattern;
+        }
     }
 
     public class PatternLibrary

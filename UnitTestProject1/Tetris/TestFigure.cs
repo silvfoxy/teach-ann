@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using FakeItEasy;
+using FluentAssertions.Numeric;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 
 namespace UnitTestProject1.Tetris
@@ -35,6 +37,13 @@ namespace UnitTestProject1.Tetris
             figure.RotationNumber = 3;
             figure.NextRotation();
             figure.RotationNumber.Should().Be(0);
+        }
+        [TestMethod]
+        public void ColorFigure_Should_Set_Color()
+        {
+            var figure = new Figure();
+            figure.ColorFigure();
+            figure.Color.Should().BeInRange(1,16);
         }
     }
 }

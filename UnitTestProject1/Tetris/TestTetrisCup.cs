@@ -16,15 +16,15 @@ namespace UnitTestProject1
         {
             TetrisCup tetrisCup = new TetrisCup(10, 20,
                 new[] { new Point(3, 4), new Point(4, 3) });
-            Assert.AreEqual(-1, tetrisCup.GetColor(new Point(3, 4)));
-            var clone = tetrisCup.Clone();
+            Assert.AreEqual(-1, tetrisCup.GetColorOfPoint(new Point(3, 4)));
+            var clone = tetrisCup.Clone(5);
         }
         [TestMethod]
         public void Clone_Should_Not_Return_Null()
         {
             ITetrisCup tetrisCup = new TetrisCup(10, 20,
                 new[] { new Point(3, 4), new Point(4, 3) });
-            var cloneTetrisCup = tetrisCup.Clone();
+            var cloneTetrisCup = tetrisCup.Clone(6);
             Assert.IsNotNull(cloneTetrisCup);
         }
         [TestMethod]
@@ -32,7 +32,7 @@ namespace UnitTestProject1
         {
             ITetrisCup tetrisCup = new TetrisCup(10, 20,
                 new[] { new Point(3, 4), new Point(4, 3) });
-            var cloneTetrisCup = tetrisCup.Clone();
+            var cloneTetrisCup = tetrisCup.Clone(7);
             Assert.AreNotSame(tetrisCup, cloneTetrisCup);
         }
         [TestMethod]
@@ -40,30 +40,30 @@ namespace UnitTestProject1
         {
             ITetrisCup tetrisCup = new TetrisCup(2, 2,
                 new[] { new Point(0, 1), new Point(1, 0) });
-            var cloneTetrisCup = tetrisCup.Clone();
-            cloneTetrisCup.GetColor(new Point(0, 1)).Should().BeInRange(1, 16);
-            cloneTetrisCup.GetColor(new Point(1, 0)).Should().BeInRange(1, 16);
-            cloneTetrisCup.GetColor(new Point(0, 0)).Should().Be(0);
-            cloneTetrisCup.GetColor(new Point(1, 1)).Should().Be(0);
+            var cloneTetrisCup = tetrisCup.Clone(8);
+            cloneTetrisCup.GetColorOfPoint(new Point(0, 1)).Should().Be(8);
+            cloneTetrisCup.GetColorOfPoint(new Point(1, 0)).Should().Be(8);
+            cloneTetrisCup.GetColorOfPoint(new Point(0, 0)).Should().Be(0);
+            cloneTetrisCup.GetColorOfPoint(new Point(1, 1)).Should().Be(0);
         }
         [TestMethod]
         public void Clone_Should_Copy_Colors()
         {
             ITetrisCup tetrisCup = new TetrisCup(2, 2,
                 new[] { new Point(0, 1), new Point(1, 0) });
-            tetrisCup = tetrisCup.Clone();
-            var cloneTetrisCup = tetrisCup.Clone();
-            cloneTetrisCup.GetColor(new Point(0, 1)).Should().Be(tetrisCup.GetColor(new Point(0, 1)));
-            cloneTetrisCup.GetColor(new Point(1, 0)).Should().Be(tetrisCup.GetColor(new Point(1, 0)));
-            cloneTetrisCup.GetColor(new Point(0, 0)).Should().Be(0);
-            cloneTetrisCup.GetColor(new Point(1, 1)).Should().Be(0);
+            tetrisCup = tetrisCup.Clone(9);
+            var cloneTetrisCup = tetrisCup.Clone(9);
+            cloneTetrisCup.GetColorOfPoint(new Point(0, 1)).Should().Be(tetrisCup.GetColorOfPoint(new Point(0, 1)));
+            cloneTetrisCup.GetColorOfPoint(new Point(1, 0)).Should().Be(tetrisCup.GetColorOfPoint(new Point(1, 0)));
+            cloneTetrisCup.GetColorOfPoint(new Point(0, 0)).Should().Be(0);
+            cloneTetrisCup.GetColorOfPoint(new Point(1, 1)).Should().Be(0);
         }
         [TestMethod]
-        public void GetColor_Shoud_Return_Color_Of_Given_Point()
+        public void GetColorOfPoint_Shoud_Return_Color_Of_Given_Point()
         {
             TetrisCup tetrisCup = new TetrisCup(10, 20,
                 new[] { new Point(1, 2) });
-            Assert.AreEqual(0, tetrisCup.GetColor(new Point(0, 0)));
+            Assert.AreEqual(0, tetrisCup.GetColorOfPoint(new Point(0, 0)));
         }
         [TestMethod]
         public void CopyFrom_Should_Copy_Colors_From_UpperLayer_To_LowerLayer()
@@ -71,10 +71,10 @@ namespace UnitTestProject1
             TetrisCup upperLayer = new TetrisCup(2, 2, new[] { new Point(1, 0) });
             TetrisCup lowerLayer = new TetrisCup(2, 2, new Point[] { });
             lowerLayer.CopyFrom(upperLayer, new Offset(0, 0));
-            lowerLayer.GetColor(new Point(1, 0)).Should().Be(-1);
-            lowerLayer.GetColor(new Point(0, 0)).Should().Be(0);
-            lowerLayer.GetColor(new Point(0, 1)).Should().Be(0);
-            lowerLayer.GetColor(new Point(1, 1)).Should().Be(0);
+            lowerLayer.GetColorOfPoint(new Point(1, 0)).Should().Be(-1);
+            lowerLayer.GetColorOfPoint(new Point(0, 0)).Should().Be(0);
+            lowerLayer.GetColorOfPoint(new Point(0, 1)).Should().Be(0);
+            lowerLayer.GetColorOfPoint(new Point(1, 1)).Should().Be(0);
         }
         [TestMethod]
         public void CopyFrom_When_LowerLayer_Is_Bigger_Then_UpperLayer_Should_Not_Throw()
@@ -89,10 +89,10 @@ namespace UnitTestProject1
             TetrisCup upperLayer = new TetrisCup(2, 2, new[] { new Point(1, 0) });
             TetrisCup lowerLayer = new TetrisCup(2, 2, new Point[] { new Point(1, 1) });
             lowerLayer.CopyFrom(upperLayer, new Offset(0, 0));
-            lowerLayer.GetColor(new Point(1, 0)).Should().Be(-1);
-            lowerLayer.GetColor(new Point(0, 0)).Should().Be(0);
-            lowerLayer.GetColor(new Point(0, 1)).Should().Be(0);
-            lowerLayer.GetColor(new Point(1, 1)).Should().Be(-1);
+            lowerLayer.GetColorOfPoint(new Point(1, 0)).Should().Be(-1);
+            lowerLayer.GetColorOfPoint(new Point(0, 0)).Should().Be(0);
+            lowerLayer.GetColorOfPoint(new Point(0, 1)).Should().Be(0);
+            lowerLayer.GetColorOfPoint(new Point(1, 1)).Should().Be(-1);
         }
         [TestMethod]
         public void CopyFrom_Should_Copy_With_Offset()
@@ -100,12 +100,12 @@ namespace UnitTestProject1
             TetrisCup upperLayer = new TetrisCup(3, 2, new[] { new Point(1, 0) });
             TetrisCup lowerLayer = new TetrisCup(3, 2, new Point[] {});
             lowerLayer.CopyFrom(upperLayer, new Offset(1, 1));
-            lowerLayer.GetColor(new Point(0, 0)).Should().Be(0);
-            lowerLayer.GetColor(new Point(0, 1)).Should().Be(0);
-            lowerLayer.GetColor(new Point(1, 0)).Should().Be(0); 
-            lowerLayer.GetColor(new Point(1, 1)).Should().Be(0);
-            lowerLayer.GetColor(new Point(2, 0)).Should().Be(0);
-            lowerLayer.GetColor(new Point(2, 1)).Should().Be(-1);
+            lowerLayer.GetColorOfPoint(new Point(0, 0)).Should().Be(0);
+            lowerLayer.GetColorOfPoint(new Point(0, 1)).Should().Be(0);
+            lowerLayer.GetColorOfPoint(new Point(1, 0)).Should().Be(0); 
+            lowerLayer.GetColorOfPoint(new Point(1, 1)).Should().Be(0);
+            lowerLayer.GetColorOfPoint(new Point(2, 0)).Should().Be(0);
+            lowerLayer.GetColorOfPoint(new Point(2, 1)).Should().Be(-1);
         }
         [TestMethod]
         public void Fits_When_Upper_Is_Bigger_Then_Lower_Should_Return_False()

@@ -186,16 +186,16 @@ namespace UnitTestProject1.Tetris
         }
 
         [TestMethod]
-        public void GetColor_Should_Return_Color_From_Cup_Or_Figure()
+        public void GetColorOfPoint_Should_Return_Color_From_Cup_Or_Figure()
         {
             var scene = new Scene();
             scene.Figure = A.Fake<IFigure>();
             scene.Cup = A.Fake<ITetrisCup>();
             scene.Offset = new Offset(9, 2);
             var cloneCup = A.Fake<ITetrisCup>();
-            A.CallTo(() => scene.Cup.Clone()).Returns(cloneCup);
-            A.CallTo(()=>cloneCup.GetColor(new Point(9, 2))).Returns(24);
-            scene.GetColor(new Point(9, 2)).Should().Be(24);
+            A.CallTo(() => scene.Cup.Clone(-2)).Returns(cloneCup);
+            A.CallTo(()=>cloneCup.GetColorOfPoint(new Point(9, 2))).Returns(24);
+            scene.GetColorOfPoint(new Point(9, 2)).Should().Be(24);
             A.CallTo(() => cloneCup.CopyFrom(scene.Figure.CurrentRotation, scene.Offset))
                 .MustHaveHappened();
         }

@@ -73,7 +73,7 @@ namespace UnitTestProject1.Tetris
             scene.Cup.Width.Should().Be(20);
             for (int x=0; x<scene.Cup.Width; x++)
                 for (int y = 0; y < scene.Cup.Height; y++)
-                    scene.Cup.GetColor(new Point(x, y)).Should().Be(0);
+                    scene.Cup.GetColorOfPoint(new Point(x, y)).Should().Be(0);
         }
     }
 }

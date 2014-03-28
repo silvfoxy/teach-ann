@@ -11,6 +11,12 @@ namespace UnitTestProject1.Tetris
         public Pattern Pattern { get; set; }
 
         public int RotationNumber { get; set; }
+        public int Color { get; set; }
+        public static Random rnd = new Random();
+        public void ColorFigure()
+        {
+            Color = rnd.Next(16) + 1;
+        }
 
         public ITetrisCup CurrentRotation
         {
@@ -32,5 +38,7 @@ namespace UnitTestProject1.Tetris
         void NextRotation();
         Pattern Pattern { get; set; }
         int RotationNumber { get; set; }
+        void ColorFigure();
+        int Color { get; set; }
     }
 }

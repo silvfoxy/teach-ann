@@ -7,8 +7,8 @@ namespace UnitTestProject1
 {
     public interface ITetrisCup 
     {
-        int GetColor(Point point);
-        ITetrisCup Clone();
+        int GetColorOfPoint(Point point);
+        ITetrisCup Clone(int color);
         void CopyFrom(ITetrisCup upperLayer, Offset offset);
         bool Fits(ITetrisCup cup, Offset offset);
         int Width { get; }
@@ -19,7 +19,6 @@ namespace UnitTestProject1
         private Size _size;
         private Point[] _pattern;
         private int[,] _colors;
-        private static Random rnd = new Random();
         public int Width { get { return _size.Width; } }
         public int Height { get { return _size.Height; } }
         public TetrisCup(int width, int height, Point[] pattern)
@@ -33,14 +32,13 @@ namespace UnitTestProject1
                 _colors[point.X, point.Y] = -1;
             }
         }
-        public int GetColor(Point point)
+        public int GetColorOfPoint(Point point)
         {
             return _colors[point.X, point.Y];
         }
-        public ITetrisCup Clone()
+        public ITetrisCup Clone(int color)
         {
             TetrisCup cloneTetrisCup = new TetrisCup(_size.Width, _size.Height, _pattern);
-            int color = rnd.Next(16) + 1;
             for (int i = 0; i < _size.Width; i++)
                 for (int j = 0; j < _size.Height; j++)
                 {

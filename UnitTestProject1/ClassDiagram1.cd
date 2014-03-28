@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="UnitTestProject1.Tetris.Figure" BaseTypeListCollapsed="true">
+    <Position X="8" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAEAAAAAAAAABQAAAAABAAAAAAgAAEAAA=</HashCode>
+      <FileName>Tetris\Figure.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Pattern" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="UnitTestProject1.Tetris.Game">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Tetris\Game.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Scene" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UnitTestProject1.Tetris.Pattern">
+    <Position X="6.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Tetris\Pattern.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="Rotations" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="UnitTestProject1.Tetris.PatternLibrary">
+    <Position X="3.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tetris\Pattern.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="Patterns" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="UnitTestProject1.Tetris.Scene" BaseTypeListCollapsed="true">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAARAAAAAAAAAAAAAAEAAAEAAIQAAAAAAEgAA=</HashCode>
+      <FileName>Tetris\Scene.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Figure" />
+      <Property Name="Cup" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="UnitTestProject1.Tetris.RandomFigureSelector" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Tetris\Scene.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="UnitTestProject1.Point" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAQAAAAAgAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Tetris\Point.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnitTestProject1.TetrisCup" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABQAAACAAAAAAAEAAAACAUAAAAAAAAAIAABA=</HashCode>
+      <FileName>Tetris\TetrisCup.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="UnitTestProject1.Size" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAEAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tetris\TetrisCup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnitTestProject1.Offset" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAwAEAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Tetris\TetrisCup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="UnitTestProject1.Tetris.IFigure" Collapsed="true">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAABQAAAAABAAAAAAgAAEAAA=</HashCode>
+      <FileName>Tetris\Figure.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="UnitTestProject1.Tetris.IScene" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAARAAAAAAAAAAAAAAEAAAAAAIQAAAAAAEAAA=</HashCode>
+      <FileName>Tetris\Scene.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="UnitTestProject1.Tetris.IRandomFigureSelector" Collapsed="true">
+    <Position X="2.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Tetris\Scene.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="UnitTestProject1.ITetrisCup" Collapsed="true">
+    <Position X="12.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABQAAACAAAAAAAEAAAAAAEAAAAAAAAAAAABA=</HashCode>
+      <FileName>Tetris\TetrisCup.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
