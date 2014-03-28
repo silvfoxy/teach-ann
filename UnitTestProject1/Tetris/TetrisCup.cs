@@ -9,7 +9,7 @@ namespace UnitTestProject1
     {
         int GetColorOfPoint(Point point);
         ITetrisCup Clone(int color);
-        void CopyFrom(ITetrisCup upperLayer, Offset offset);
+        void CopyFrom(ITetrisCup upperLayer, Offset offset, int color);
         bool Fits(ITetrisCup cup, Offset offset);
         int Width { get; }
         int Height { get; }
@@ -48,13 +48,13 @@ namespace UnitTestProject1
                 }
             return cloneTetrisCup;
         }
-        public void CopyFrom(ITetrisCup upperLayer1, Offset offset)
+        public void CopyFrom(ITetrisCup upperLayer1, Offset offset, int color)
         {//илья уверен, что ф-я недотестирована
             var upperLayer = (TetrisCup)upperLayer1;
             for (int i = 0; i < upperLayer.Height; i++)
                 for (int j = 0; j < upperLayer.Width; j++)
                     if (upperLayer._colors[j, i] != 0)
-                        this._colors[j+offset.X, i+offset.Y] = upperLayer._colors[j, i];
+                        this._colors[j+offset.X, i+offset.Y] = color;
 
         }
         public bool Fits(ITetrisCup intoCup1, Offset offset)

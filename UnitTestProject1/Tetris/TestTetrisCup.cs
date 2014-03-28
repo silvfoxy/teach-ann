@@ -70,7 +70,7 @@ namespace UnitTestProject1
         {
             TetrisCup upperLayer = new TetrisCup(2, 2, new[] { new Point(1, 0) });
             TetrisCup lowerLayer = new TetrisCup(2, 2, new Point[] { });
-            lowerLayer.CopyFrom(upperLayer, new Offset(0, 0));
+            lowerLayer.CopyFrom(upperLayer, new Offset(0, 0), 42);
             lowerLayer.GetColorOfPoint(new Point(1, 0)).Should().Be(-1);
             lowerLayer.GetColorOfPoint(new Point(0, 0)).Should().Be(0);
             lowerLayer.GetColorOfPoint(new Point(0, 1)).Should().Be(0);
@@ -81,14 +81,14 @@ namespace UnitTestProject1
         {
             TetrisCup upperLayer = new TetrisCup(1, 1, new[] { new Point(0, 0) });
             TetrisCup lowerLayer = new TetrisCup(2, 2, new Point[] { });
-            lowerLayer.CopyFrom(upperLayer, new Offset(0, 0));
+            lowerLayer.CopyFrom(upperLayer, new Offset(0, 0), 42);
         }
         [TestMethod]
         public void CopyFrom_When_Cell_In_UpperLayer_Is_Empty_Should_Not_Reset_LowerLayer_Cell()
         {
             TetrisCup upperLayer = new TetrisCup(2, 2, new[] { new Point(1, 0) });
             TetrisCup lowerLayer = new TetrisCup(2, 2, new Point[] { new Point(1, 1) });
-            lowerLayer.CopyFrom(upperLayer, new Offset(0, 0));
+            lowerLayer.CopyFrom(upperLayer, new Offset(0, 0), 42);
             lowerLayer.GetColorOfPoint(new Point(1, 0)).Should().Be(-1);
             lowerLayer.GetColorOfPoint(new Point(0, 0)).Should().Be(0);
             lowerLayer.GetColorOfPoint(new Point(0, 1)).Should().Be(0);
@@ -99,7 +99,7 @@ namespace UnitTestProject1
         {
             TetrisCup upperLayer = new TetrisCup(3, 2, new[] { new Point(1, 0) });
             TetrisCup lowerLayer = new TetrisCup(3, 2, new Point[] {});
-            lowerLayer.CopyFrom(upperLayer, new Offset(1, 1));
+            lowerLayer.CopyFrom(upperLayer, new Offset(1, 1), 42);
             lowerLayer.GetColorOfPoint(new Point(0, 0)).Should().Be(0);
             lowerLayer.GetColorOfPoint(new Point(0, 1)).Should().Be(0);
             lowerLayer.GetColorOfPoint(new Point(1, 0)).Should().Be(0); 

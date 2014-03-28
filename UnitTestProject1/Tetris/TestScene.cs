@@ -194,7 +194,7 @@ namespace UnitTestProject1.Tetris
             var dummyCup = A.Dummy<ITetrisCup>();
             A.CallTo(() => scene.Figure.CurrentRotation).Returns(dummyCup);
             scene.Print();
-            A.CallTo(() => scene.Cup.CopyFrom(dummyCup, new Offset(9, 2)))
+            A.CallTo(() => scene.Cup.CopyFrom(dummyCup, new Offset(9, 2), 42))
                 .MustHaveHappened();
         }
 
@@ -209,7 +209,7 @@ namespace UnitTestProject1.Tetris
             A.CallTo(() => scene.Cup.Clone(-2)).Returns(cloneCup);
             A.CallTo(()=>cloneCup.GetColorOfPoint(new Point(9, 2))).Returns(24);
             scene.GetColorOfPoint(new Point(9, 2)).Should().Be(24);
-            A.CallTo(() => cloneCup.CopyFrom(scene.Figure.CurrentRotation, scene.Offset))
+            A.CallTo(() => cloneCup.CopyFrom(scene.Figure.CurrentRotation, scene.Offset, 42))
                 .MustHaveHappened();
         }
     }
