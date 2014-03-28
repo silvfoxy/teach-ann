@@ -71,7 +71,6 @@ namespace UnitTestProject1.Tetris
                 this.Figure = figure;
                 this.Figure.ColorFigure();
                 this.Offset = new Offset(middle, 0);
-
             }
             return fits;
         }

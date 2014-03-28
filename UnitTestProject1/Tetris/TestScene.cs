@@ -170,6 +170,19 @@ namespace UnitTestProject1.Tetris
             scene.NextFigure(figure);
             scene.Offset.Should().NotBe(new Offset(3, 0));
         }
+        [TestMethod]
+        public void NextFigure_Should_Color_Figure()
+        {
+            var scene = new Scene();
+            scene.Cup = A.Fake<ITetrisCup>();
+            var figure = A.Fake<IFigure>();
+            A.CallTo(() => scene.Cup.Width).Returns(10);
+            A.CallTo(() => figure.CurrentRotation.Width).Returns(4);
+            A.CallTo(() => figure.CurrentRotation.Fits(scene.Cup, new Offset(3, 0)))
+                .Returns(true);
+            scene.NextFigure(figure);
+            A.CallTo(()=>scene.Figure.ColorFigure()).MustHaveHappened();
+        }
 
         [TestMethod]
         public void Print_Should_Copy_CurrentRotation_To_The_Cup()
