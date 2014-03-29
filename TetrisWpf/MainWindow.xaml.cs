@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
@@ -34,11 +35,12 @@ namespace TetrisWpf
             {13, System.Windows.Media.Brushes.Coral},
             {14, System.Windows.Media.Brushes.DodgerBlue},
             {15, System.Windows.Media.Brushes.MediumSeaGreen},
-        };  
+            {16, System.Windows.Media.Brushes.HotPink},
+        };
         public MainWindow()
         {
             Game = new Game(new Scene(), new RandomFigureSelector());
-            DispatcherTimer = new DispatcherTimer(TimeSpan.FromSeconds(1), DispatcherPriority.ApplicationIdle, OnTick, Dispatcher);
+            DispatcherTimer = new DispatcherTimer(TimeSpan.FromSeconds(0.3), DispatcherPriority.ApplicationIdle, OnTick, Dispatcher);
             InitializeComponent();
         }
 
@@ -53,12 +55,31 @@ namespace TetrisWpf
             _uniformGrid.Children.Clear();
             for (int i = 0; i < 20; i++)
                 for (int j = 0; j < 20; j++)
+                {
+                    var color = Game.Scene.GetColorOfPoint(new Point(j, i));
+                    var rectangle = new Rectangle();
+                    rectangle.Fill = Brushes[color];
+                    rectangle.Margin = new Thickness(1, 1, 0, 0);
+                    _uniformGrid.Children.Add(rectangle);
+                }
+        }
+
+        private void MainWindow_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
             {
-                var color = Game.Scene.GetColorOfPoint(new Point(j, i));
-                var rectangle = new Rectangle();
-                rectangle.Fill = Brushes[color];
-                _uniformGrid.Children.Add(rectangle);
+                case Key.Left: Game.Scene.MoveLeft();
+                    break;
+                case Key.Up: Game.Scene.Rotate();
+                    break;
+                case Key.Down: Game.Scene.MoveDown();
+                    break;
+                case Key.Right: Game.Scene.MoveRight();
+                    break;
+                case Key.Space: Game.Scene.DropDown();
+                    break;
             }
+            UpdateScreen();
         }
     }
 }

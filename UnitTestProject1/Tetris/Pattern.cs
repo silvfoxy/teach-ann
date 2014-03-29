@@ -83,9 +83,9 @@ namespace UnitTestProject1.Tetris
             {
                 Rotations = new []
                 {
-                    new TetrisCup(3,2, new []{new Point(0,1), new Point(1,0), new Point(1,1), new Point(2,1) }),
+                    new TetrisCup(3,2, new []{new Point(0,0), new Point(1,0), new Point(1,1), new Point(2,1) }),
                     new TetrisCup(2,3, new []{new Point(0,1), new Point(0,2), new Point(1,0), new Point(1,1) }),
-                    new TetrisCup(3,2, new []{new Point(0,1), new Point(1,0), new Point(1,1), new Point(2,1) }),
+                    new TetrisCup(3,2, new []{new Point(0,0), new Point(1,0), new Point(1,1), new Point(2,1) }),
                     new TetrisCup(2,3, new []{new Point(0,1), new Point(0,2), new Point(1,0), new Point(1,1) })    
                 }
             },            
