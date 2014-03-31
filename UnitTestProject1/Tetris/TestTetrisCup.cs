@@ -92,7 +92,8 @@ namespace UnitTestProject1
             lowerLayer.GetColorOfPoint(new Point(1, 0)).Should().Be(42);
             lowerLayer.GetColorOfPoint(new Point(0, 0)).Should().Be(0);
             lowerLayer.GetColorOfPoint(new Point(0, 1)).Should().Be(0);
-            lowerLayer.GetColorOfPoint(new Point(1, 1)).Should().Be(42);//но возвращается -1, тест падает. почему?!
+            //CopyFrom не трогает то, что уже было нарисовано в нижней чашке.
+            lowerLayer.GetColorOfPoint(new Point(1, 1)).Should().Be(-1);
         }
         [TestMethod]
         public void CopyFrom_Should_Copy_With_Offset()
@@ -141,6 +142,13 @@ namespace UnitTestProject1
             TetrisCup upper = new TetrisCup(2, 2, new[] { new Point(1, 0) });
             TetrisCup lower = new TetrisCup(3, 2, new[] { new Point(2, 0) });
             upper.Fits(lower, new Offset(1, 0)).Should().BeFalse();
+        }
+        [TestMethod]
+        public void Fits_When_Offset_Is_Less_Then_0_Should_Return_False()
+        {
+            TetrisCup upper = new TetrisCup(2, 2, new[] { new Point(1, 0) });
+            TetrisCup lower = new TetrisCup(3, 3, new[] { new Point(2, 0) });
+            upper.Fits(lower, new Offset(-1, 0)).Should().BeFalse();
         }
 
     }

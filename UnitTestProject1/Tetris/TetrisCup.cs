@@ -62,9 +62,11 @@ namespace UnitTestProject1
             var intoCup = (TetrisCup) intoCup1;
             if (intoCup._size.StrictlyLess(this._size+offset))
                 return false;
+            if (offset.X < 0) return false;
             for (int y = 0; y < this._size.Height; y++)
                 for (int x = 0; x < this._size.Width; x++)
-                    if (this._colors[x, y] != 0 && intoCup._colors[x + offset.X, y + offset.Y] != 0)
+                    if (this._colors[x, y] != 0 &&
+                        intoCup._colors[x + offset.X, y + offset.Y] != 0)
                         return false;
                     return true;
         }

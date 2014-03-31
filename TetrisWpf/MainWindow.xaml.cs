@@ -53,8 +53,8 @@ namespace TetrisWpf
         private void UpdateScreen()
         {
             _uniformGrid.Children.Clear();
-            for (int i = 0; i < 20; i++)
-                for (int j = 0; j < 20; j++)
+            for (int i = 0; i < 25; i++)
+                for (int j = 0; j < 15; j++)
                 {
                     var color = Game.Scene.GetColorOfPoint(new Point(j, i));
                     var rectangle = new Rectangle();

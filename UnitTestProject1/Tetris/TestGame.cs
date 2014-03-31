@@ -64,13 +64,13 @@ namespace UnitTestProject1.Tetris
             A.CallTo(() => scene.NextFigure(dummyFigure)).MustHaveHappened();
         }
         [TestMethod]
-        public void Constructor_Should_Initialize_Cup_With_Width_20_And_Height_20()
+        public void Constructor_Should_Initialize_Cup_With_Width_15_And_Height_25()
         {
             var scene = A.Fake<IScene>();
             var randomFigureSelector = A.Fake<IRandomFigureSelector>();
             new Game(scene, randomFigureSelector);
-            scene.Cup.Height.Should().Be(20);
-            scene.Cup.Width.Should().Be(20);
+            scene.Cup.Height.Should().Be(25);
+            scene.Cup.Width.Should().Be(15);
             for (int x=0; x<scene.Cup.Width; x++)
                 for (int y = 0; y < scene.Cup.Height; y++)
                     scene.Cup.GetColorOfPoint(new Point(x, y)).Should().Be(0);

@@ -37,16 +37,16 @@ namespace UnitTestProject1.Tetris
 
         public void MoveLeft()
         {
-            int myXOffset = Offset.X == 0 ? 0 : Offset.X - 1;
-            if (Figure.CurrentRotation.Fits(Cup, new Offset(myXOffset, Offset.Y)))
-                Offset = new Offset(myXOffset, Offset.Y);
+            //int myXOffset = Offset.X == 0 ? 0 : Offset.X - 1;
+            if (Figure.CurrentRotation.Fits(Cup, new Offset(Offset.X - 1, Offset.Y)))
+                Offset = new Offset(Offset.X - 1, Offset.Y);
         }
 
         public void MoveRight()
         {
-            int myXOffset = Offset.X == Cup.Width ? Cup.Width : Offset.X + 1;
-            if (Figure.CurrentRotation.Fits(Cup, new Offset(myXOffset, Offset.Y)))
-                Offset = new Offset(myXOffset, Offset.Y);
+            //int myXOffset = Offset.X == Cup.Width-1 ? Cup.Width-1 : Offset.X + 1;
+            if (Figure.CurrentRotation.Fits(Cup, new Offset(Offset.X + 1, Offset.Y)))
+                Offset = new Offset(Offset.X + 1, Offset.Y);
         }
 
         public bool MoveDown()

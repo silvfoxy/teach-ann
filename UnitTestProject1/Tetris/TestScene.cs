@@ -84,7 +84,7 @@ namespace UnitTestProject1.Tetris
             scene.MoveRight();
             scene.Offset.X.Should().Be(3);
         }
-        [TestMethod]
+        /*[TestMethod]
         public void MoveRight_When_OffsetX_Equals_To_Width_Should_Not_Change_OffsetX()
         {
             var scene = new Scene();
@@ -93,7 +93,7 @@ namespace UnitTestProject1.Tetris
             scene.Offset = new Offset(3, 5);
             scene.MoveRight();
             scene.Offset.X.Should().Be(3);
-        }
+        }*/
         [TestMethod]
         public void MoveLeft_When_Fits_Return_True_Should_Deccrement_OffsetX()
         {
@@ -116,7 +116,7 @@ namespace UnitTestProject1.Tetris
             scene.MoveLeft();
             scene.Offset.X.Should().Be(3);
         }
-        [TestMethod]
+        /*[TestMethod]
         public void MoveLeft_When_OffsetX_Is_0_ShouldNot_Decrement_It()
         {
             var scene = new Scene();
@@ -127,7 +127,7 @@ namespace UnitTestProject1.Tetris
                 .Returns(false);
             scene.MoveLeft();
             scene.Offset.X.Should().Be(0);
-        }
+        }*/
         [TestMethod]
         public void NextFigure_When_The_Given_Figure_Fits_Should_Return_True()
         {
