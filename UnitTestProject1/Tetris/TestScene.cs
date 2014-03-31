@@ -85,6 +85,16 @@ namespace UnitTestProject1.Tetris
             scene.Offset.X.Should().Be(3);
         }
         [TestMethod]
+        public void MoveRight_When_OffsetX_Equals_To_Width_Should_Not_Change_OffsetX()
+        {
+            var scene = new Scene();
+            scene.Cup = new TetrisCup(3, 3, new Point[]{});
+            scene.Figure = A.Fake<IFigure>();
+            scene.Offset = new Offset(3, 5);
+            scene.MoveRight();
+            scene.Offset.X.Should().Be(3);
+        }
+        [TestMethod]
         public void MoveLeft_When_Fits_Return_True_Should_Deccrement_OffsetX()
         {
             var scene = new Scene();
@@ -108,7 +118,18 @@ namespace UnitTestProject1.Tetris
             scene.MoveLeft();
             scene.Offset.X.Should().Be(3);
         }
-
+        [TestMethod]
+        public void MoveLeft_When_OffsetX_Is_0_ShouldNot_Decrement_It()
+        {
+            var scene = new Scene();
+            scene.Cup = A.Fake<ITetrisCup>();
+            scene.Figure = A.Fake<IFigure>();
+            scene.Offset = new Offset(0, 5);
+            A.CallTo(() => scene.Cup.Fits(scene.Figure.CurrentRotation, new Offset(0, 5)))
+                .Returns(false);
+            scene.MoveLeft();
+            scene.Offset.X.Should().Be(0);
+        }
         [TestMethod]
         public void NextFigure_When_The_Given_Figure_Fits_Should_Return_True()
         {
@@ -120,7 +141,6 @@ namespace UnitTestProject1.Tetris
             A.CallTo(() => figure.CurrentRotation.Fits(scene.Cup, new Offset(3, 0)))
                 .Returns(true);
             scene.NextFigure(figure).Should().Be(true);
-
         }
         [TestMethod]
         public void NextFigure_When_The_Given_Figure_Fits_Should_Assign_It()
@@ -190,6 +210,7 @@ namespace UnitTestProject1.Tetris
             var scene = new Scene();
             scene.Cup = A.Fake<ITetrisCup>();
             scene.Figure = A.Fake<IFigure>();
+            scene.Figure.Color = 42;
             scene.Offset = new Offset(9, 2);
             var dummyCup = A.Dummy<ITetrisCup>();
             A.CallTo(() => scene.Figure.CurrentRotation).Returns(dummyCup);
@@ -203,11 +224,12 @@ namespace UnitTestProject1.Tetris
         {
             var scene = new Scene();
             scene.Figure = A.Fake<IFigure>();
+            scene.Figure.Color = 42;
             scene.Cup = A.Fake<ITetrisCup>();
             scene.Offset = new Offset(9, 2);
             var cloneCup = A.Fake<ITetrisCup>();
             A.CallTo(() => scene.Cup.Clone(-2)).Returns(cloneCup);
-            A.CallTo(()=>cloneCup.GetColorOfPoint(new Point(9, 2))).Returns(24);
+            A.CallTo(() => cloneCup.GetColorOfPoint(new Point(9, 2))).Returns(24);
             scene.GetColorOfPoint(new Point(9, 2)).Should().Be(24);
             A.CallTo(() => cloneCup.CopyFrom(scene.Figure.CurrentRotation, scene.Offset, 42))
                 .MustHaveHappened();

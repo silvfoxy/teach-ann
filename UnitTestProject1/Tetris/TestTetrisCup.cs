@@ -71,7 +71,7 @@ namespace UnitTestProject1
             TetrisCup upperLayer = new TetrisCup(2, 2, new[] { new Point(1, 0) });
             TetrisCup lowerLayer = new TetrisCup(2, 2, new Point[] { });
             lowerLayer.CopyFrom(upperLayer, new Offset(0, 0), 42);
-            lowerLayer.GetColorOfPoint(new Point(1, 0)).Should().Be(-1);
+            lowerLayer.GetColorOfPoint(new Point(1, 0)).Should().Be(42);
             lowerLayer.GetColorOfPoint(new Point(0, 0)).Should().Be(0);
             lowerLayer.GetColorOfPoint(new Point(0, 1)).Should().Be(0);
             lowerLayer.GetColorOfPoint(new Point(1, 1)).Should().Be(0);
@@ -89,10 +89,10 @@ namespace UnitTestProject1
             TetrisCup upperLayer = new TetrisCup(2, 2, new[] { new Point(1, 0) });
             TetrisCup lowerLayer = new TetrisCup(2, 2, new Point[] { new Point(1, 1) });
             lowerLayer.CopyFrom(upperLayer, new Offset(0, 0), 42);
-            lowerLayer.GetColorOfPoint(new Point(1, 0)).Should().Be(-1);
+            lowerLayer.GetColorOfPoint(new Point(1, 0)).Should().Be(42);
             lowerLayer.GetColorOfPoint(new Point(0, 0)).Should().Be(0);
             lowerLayer.GetColorOfPoint(new Point(0, 1)).Should().Be(0);
-            lowerLayer.GetColorOfPoint(new Point(1, 1)).Should().Be(-1);
+            lowerLayer.GetColorOfPoint(new Point(1, 1)).Should().Be(42);//но возвращается -1, тест падает. почему?!
         }
         [TestMethod]
         public void CopyFrom_Should_Copy_With_Offset()
@@ -105,7 +105,7 @@ namespace UnitTestProject1
             lowerLayer.GetColorOfPoint(new Point(1, 0)).Should().Be(0); 
             lowerLayer.GetColorOfPoint(new Point(1, 1)).Should().Be(0);
             lowerLayer.GetColorOfPoint(new Point(2, 0)).Should().Be(0);
-            lowerLayer.GetColorOfPoint(new Point(2, 1)).Should().Be(-1);
+            lowerLayer.GetColorOfPoint(new Point(2, 1)).Should().Be(42);
         }
         [TestMethod]
         public void Fits_When_Upper_Is_Bigger_Then_Lower_Should_Return_False()
