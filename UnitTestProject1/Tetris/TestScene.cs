@@ -113,8 +113,6 @@ namespace UnitTestProject1.Tetris
             scene.Cup = A.Fake<ITetrisCup>();
             scene.Figure = A.Fake<IFigure>();
             scene.Offset = new Offset(3, 5);
-            A.CallTo(() => scene.Cup.Fits(scene.Figure.CurrentRotation, new Offset(2, 5)))
-                .Returns(false);
             scene.MoveLeft();
             scene.Offset.X.Should().Be(3);
         }
