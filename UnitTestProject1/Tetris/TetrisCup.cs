@@ -11,6 +11,7 @@ namespace UnitTestProject1
         ITetrisCup Clone(int color);
         void CopyFrom(ITetrisCup upperLayer, Offset offset, int color);
         bool Fits(ITetrisCup cup, Offset offset);
+        FitsResult Fits2(ITetrisCup cup, Offset offset);
         int Width { get; }
         int Height { get; }
     }
@@ -19,6 +20,11 @@ namespace UnitTestProject1
         private Size _size;
         private Point[] _pattern;
         private int[,] _colors;
+        public FitsResult Fits2(ITetrisCup cup, Offset offset)
+        {
+            throw new NotImplementedException();
+        }
+
         public int Width { get { return _size.Width; } }
         public int Height { get { return _size.Height; } }
         public TetrisCup(int width, int height, Point[] pattern)
@@ -84,6 +90,11 @@ namespace UnitTestProject1
         {
             return this.Width < right.Width || this.Height < right.Height;
         }
+    }
+    [Flags]
+    public enum FitsResult
+    {
+        Fits=0, LeftObstacle=1, RightObstacle=2, BottomObstacle=4, 
     }
     public class Offset
     {

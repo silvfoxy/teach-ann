@@ -35,6 +35,18 @@ namespace UnitTestProject1.Tetris
             A.CallTo(() => scene.Figure.NextRotation())
                 .MustHaveHappened();
         }
+        [TestMethod]
+        public void Rotate_When_Fits2_Returns_RightObstacle_Should_MoveLeft()
+        {
+            var scene = new Scene();
+            scene.Cup = A.Fake<ITetrisCup>();
+            scene.Figure = A.Fake<IFigure>();
+            A.CallTo(() => scene.Cup.Fits2(scene.Figure.CurrentRotation, new Offset(1, 0)))
+                .Returns(FitsResult.RightObstacle);
+            scene.Rotate();
+            A.CallTo(() => scene.MoveLeft())
+                .MustHaveHappened();
+        }
 
         [TestMethod]
         public void MoveDown_When_Fits_Return_True_Should_Increment_OffsetY()
@@ -84,16 +96,6 @@ namespace UnitTestProject1.Tetris
             scene.MoveRight();
             scene.Offset.X.Should().Be(3);
         }
-        /*[TestMethod]
-        public void MoveRight_When_OffsetX_Equals_To_Width_Should_Not_Change_OffsetX()
-        {
-            var scene = new Scene();
-            scene.Cup = new TetrisCup(3, 3, new Point[]{});
-            scene.Figure = A.Fake<IFigure>();
-            scene.Offset = new Offset(3, 5);
-            scene.MoveRight();
-            scene.Offset.X.Should().Be(3);
-        }*/
         [TestMethod]
         public void MoveLeft_When_Fits_Return_True_Should_Deccrement_OffsetX()
         {
@@ -116,18 +118,7 @@ namespace UnitTestProject1.Tetris
             scene.MoveLeft();
             scene.Offset.X.Should().Be(3);
         }
-        /*[TestMethod]
-        public void MoveLeft_When_OffsetX_Is_0_ShouldNot_Decrement_It()
-        {
-            var scene = new Scene();
-            scene.Cup = A.Fake<ITetrisCup>();
-            scene.Figure = A.Fake<IFigure>();
-            scene.Offset = new Offset(0, 5);
-            A.CallTo(() => scene.Cup.Fits(scene.Figure.CurrentRotation, new Offset(0, 5)))
-                .Returns(false);
-            scene.MoveLeft();
-            scene.Offset.X.Should().Be(0);
-        }*/
+
         [TestMethod]
         public void NextFigure_When_The_Given_Figure_Fits_Should_Return_True()
         {
