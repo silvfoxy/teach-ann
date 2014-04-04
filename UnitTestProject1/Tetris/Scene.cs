@@ -60,6 +60,8 @@ namespace UnitTestProject1.Tetris
         public void Rotate()
         {
             Figure.NextRotation();
+            while (Figure.CurrentRotation.Fits2(Cup, Offset)==FitsResult.BottomObstacle)
+                Offset = new Offset(Offset.X, Offset.Y-1);
         }
 
         public bool NextFigure(IFigure figure)

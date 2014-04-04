@@ -35,6 +35,34 @@ namespace UnitTestProject1.Tetris
             A.CallTo(() => scene.Figure.NextRotation())
                 .MustHaveHappened();
         }
+        [TestMethod]
+        public void Rotate_When_BottomObstacle_Should_Move_Up()
+        {
+            var scene = new Scene();
+            scene.Figure = A.Fake<IFigure>();
+            scene.Cup = A.Fake<ITetrisCup>();
+            scene.Offset = new Offset(1, 1);
+            A.CallTo(() => scene.Figure.CurrentRotation.Fits2(scene.Cup, new Offset(1, 1)))
+                .Returns(FitsResult.BottomObstacle);
+            scene.Rotate();
+            scene.Offset.Y.Should().Be(0);
+        }
+        [TestMethod]
+        public void Rotate_When_BottomObstacle_Should_Move_Up_Till_Fits()
+        {
+            var scene = new Scene();
+            scene.Figure = A.Fake<IFigure>();
+            scene.Cup = A.Fake<ITetrisCup>();
+            scene.Offset = new Offset(1, 2);
+            A.CallTo(() => scene.Figure.CurrentRotation.Fits2(scene.Cup, new Offset(1, 2)))
+                .Returns(FitsResult.BottomObstacle);
+            A.CallTo(() => scene.Figure.CurrentRotation.Fits2(scene.Cup, new Offset(1, 1)))
+                .Returns(FitsResult.BottomObstacle); 
+            A.CallTo(() => scene.Figure.CurrentRotation.Fits2(scene.Cup, new Offset(1, 0)))
+                 .Returns(FitsResult.Fits);
+            scene.Rotate();
+            scene.Offset.Y.Should().Be(0);
+        }
         //[TestMethod]
         public void Rotate_When_Fits2_Returns_RightObstacle_Should_MoveLeft()
         {
