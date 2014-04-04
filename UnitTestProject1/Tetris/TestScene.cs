@@ -35,7 +35,7 @@ namespace UnitTestProject1.Tetris
             A.CallTo(() => scene.Figure.NextRotation())
                 .MustHaveHappened();
         }
-        [TestMethod]
+        //[TestMethod]
         public void Rotate_When_Fits2_Returns_RightObstacle_Should_MoveLeft()
         {
             var scene = new Scene();

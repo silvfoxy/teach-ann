@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using FakeItEasy;
+using FakeItEasy.Configuration;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -151,5 +153,26 @@ namespace UnitTestProject1
             upper.Fits(lower, new Offset(-1, 0)).Should().BeFalse();
         }
 
+        [TestMethod]
+        public void Fits2_When_There_Is_No_Obstacles_Return_Fits()
+        {
+            TetrisCup upper = new TetrisCup(2, 2, new Point[] { });
+            TetrisCup lower = new TetrisCup(3, 3, new[] { new Point(2, 0) });
+            upper.Fits2(lower, new Offset(1, 0)).Should().Be(FitsResult.Fits);
+        }
+        /*[TestMethod]
+        public void Fits2_When_There_Is_RightObstacle_Return_2()
+        {
+            TetrisCup upper = new TetrisCup(2, 2, new Point[] { });
+            TetrisCup lower = new TetrisCup(3, 3, new[] { new Point(2, 0) });
+            upper.Fits2(lower, new Offset(1, 0)).Should().Be(0);
+        }*/
+        [TestMethod]
+        public void Fits2_When_Fits_Is_False_Return_BottomObstacle()
+        {
+            TetrisCup upper = new TetrisCup(3, 2, new[] { new Point(1, 0) });
+            TetrisCup lower = new TetrisCup(3, 2, new[] { new Point(1, 0) });
+            upper.Fits2(lower, new Offset(0, 0)).Should().Be(FitsResult.BottomObstacle);
+        }
     }
 }

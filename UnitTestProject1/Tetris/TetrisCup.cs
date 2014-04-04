@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UnitTestProject1
 {
-    public interface ITetrisCup 
+    public interface ITetrisCup
     {
         int GetColorOfPoint(Point point);
         ITetrisCup Clone(int color);
@@ -15,14 +15,18 @@ namespace UnitTestProject1
         int Width { get; }
         int Height { get; }
     }
-    public class TetrisCup: ITetrisCup
+    public class TetrisCup : ITetrisCup
     {
         private Size _size;
         private Point[] _pattern;
         private int[,] _colors;
-        public FitsResult Fits2(ITetrisCup cup, Offset offset)
+        public FitsResult Fits2(ITetrisCup lowerCup, Offset offset)
         {
-            throw new NotImplementedException();
+            /*if ()
+                return FitsResult.RightObstacle;*/
+            if (!this.Fits(lowerCup, offset))
+                return FitsResult.BottomObstacle;
+            return FitsResult.Fits;
         }
 
         public int Width { get { return _size.Width; } }
@@ -60,13 +64,13 @@ namespace UnitTestProject1
             for (int i = 0; i < upperLayer.Height; i++)
                 for (int j = 0; j < upperLayer.Width; j++)
                     if (upperLayer._colors[j, i] != 0)
-                        this._colors[j+offset.X, i+offset.Y] = color;
+                        this._colors[j + offset.X, i + offset.Y] = color;
 
         }
         public bool Fits(ITetrisCup intoCup1, Offset offset)
         {
-            var intoCup = (TetrisCup) intoCup1;
-            if (intoCup._size.StrictlyLess(this._size+offset))
+            var intoCup = (TetrisCup)intoCup1;
+            if (intoCup._size.StrictlyLess(this._size + offset))
                 return false;
             if (offset.X < 0) return false;
             for (int y = 0; y < this._size.Height; y++)
@@ -74,7 +78,7 @@ namespace UnitTestProject1
                     if (this._colors[x, y] != 0 &&
                         intoCup._colors[x + offset.X, y + offset.Y] != 0)
                         return false;
-                    return true;
+            return true;
         }
     }
     public class Size
@@ -94,7 +98,7 @@ namespace UnitTestProject1
     [Flags]
     public enum FitsResult
     {
-        Fits=0, LeftObstacle=1, RightObstacle=2, BottomObstacle=4, 
+        Fits = 0, RightObstacle = 1, BottomObstacle = 2,
     }
     public class Offset
     {
