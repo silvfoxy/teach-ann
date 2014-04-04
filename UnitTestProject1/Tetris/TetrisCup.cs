@@ -22,9 +22,10 @@ namespace UnitTestProject1
         private int[,] _colors;
         public FitsResult Fits2(ITetrisCup lowerCup, Offset offset)
         {
-            /*if ()
-                return FitsResult.RightObstacle;*/
-            if (!this.Fits(lowerCup, offset))
+            var lowerCup1 = (TetrisCup)lowerCup;
+            if (lowerCup1._size.Width < (this._size.Width + offset.X))
+                return FitsResult.RightObstacle;
+            if (!this.Fits(lowerCup1, offset))
                 return FitsResult.BottomObstacle;
             return FitsResult.Fits;
         }

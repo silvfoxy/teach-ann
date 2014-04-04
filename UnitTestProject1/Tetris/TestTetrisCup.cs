@@ -160,13 +160,13 @@ namespace UnitTestProject1
             TetrisCup lower = new TetrisCup(3, 3, new[] { new Point(2, 0) });
             upper.Fits2(lower, new Offset(1, 0)).Should().Be(FitsResult.Fits);
         }
-        /*[TestMethod]
-        public void Fits2_When_There_Is_RightObstacle_Return_2()
+        [TestMethod]
+        public void Fits2_When_There_Is_RightObstacle_Return_RightObstacle()
         {
-            TetrisCup upper = new TetrisCup(2, 2, new Point[] { });
-            TetrisCup lower = new TetrisCup(3, 3, new[] { new Point(2, 0) });
-            upper.Fits2(lower, new Offset(1, 0)).Should().Be(0);
-        }*/
+            TetrisCup upper = new TetrisCup(3, 2, new Point[] { });
+            TetrisCup lower = new TetrisCup(3, 3, new Point[] {});
+            upper.Fits2(lower, new Offset(1, 0)).Should().Be(FitsResult.RightObstacle);
+        }
         [TestMethod]
         public void Fits2_When_Fits_Is_False_Return_BottomObstacle()
         {
