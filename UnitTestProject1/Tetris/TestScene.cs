@@ -63,17 +63,17 @@ namespace UnitTestProject1.Tetris
             scene.Rotate();
             scene.Offset.Y.Should().Be(0);
         }
-        //[TestMethod]
+        [TestMethod]
         public void Rotate_When_Fits2_Returns_RightObstacle_Should_MoveLeft()
         {
             var scene = new Scene();
             scene.Cup = A.Fake<ITetrisCup>();
             scene.Figure = A.Fake<IFigure>();
-            A.CallTo(() => scene.Cup.Fits2(scene.Figure.CurrentRotation, new Offset(1, 0)))
+            scene.Offset = new Offset(1, 2);
+            A.CallTo(() => scene.Figure.CurrentRotation.Fits2(scene.Cup, new Offset(1, 2)))
                 .Returns(FitsResult.RightObstacle);
             scene.Rotate();
-            A.CallTo(() => scene.MoveLeft())
-                .MustHaveHappened();
+            scene.Offset.X.Should().Be(0);
         }
 
         [TestMethod]
