@@ -101,7 +101,7 @@ namespace UnitTestProject1
     [Flags]
     public enum FitsResult
     {
-        Fits = 0, RightObstacle = 1, BottomObstacle = 2,
+        Fits = 0, RightObstacle = 1, BottomObstacle = 2, TopObstacle = 4,
     }
     public class Offset
     {

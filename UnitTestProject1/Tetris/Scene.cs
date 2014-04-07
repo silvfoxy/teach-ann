@@ -35,7 +35,7 @@ namespace UnitTestProject1.Tetris
             Offset = new Offset(Offset.X, y);
         }
 
-        public void  MoveLeft()
+        public void MoveLeft()
         {
             if (Figure.CurrentRotation.Fits(Cup, new Offset(Offset.X - 1, Offset.Y)))
                 Offset = new Offset(Offset.X - 1, Offset.Y);
@@ -59,11 +59,12 @@ namespace UnitTestProject1.Tetris
 
         public void Rotate()
         {
-            Figure.NextRotation();
-            while (Figure.CurrentRotation.Fits2(Cup, Offset)==FitsResult.BottomObstacle)
-                Offset = new Offset(Offset.X, Offset.Y-1);
-            while (Figure.CurrentRotation.Fits2(Cup, Offset)==FitsResult.RightObstacle)
-                Offset = new Offset(Offset.X-1, Offset.Y);
+            while (Figure.PeekNextRotation().Fits2(Cup, Offset) == FitsResult.BottomObstacle)
+                Offset = new Offset(Offset.X, Offset.Y - 1);
+            while (Figure.PeekNextRotation().Fits2(Cup, Offset) == FitsResult.RightObstacle)
+                Offset = new Offset(Offset.X - 1, Offset.Y);
+            if (Figure.PeekNextRotation().Fits2(Cup, Offset) == FitsResult.Fits)
+                Figure.NextRotation();
         }
 
         public bool NextFigure(IFigure figure)
