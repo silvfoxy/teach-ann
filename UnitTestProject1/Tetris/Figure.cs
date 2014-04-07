@@ -8,6 +8,11 @@ namespace UnitTestProject1.Tetris
 {
     public class Figure : IFigure
     {
+        public ITetrisCup PeekNextRotation()
+        {
+            return Pattern.Rotations[(RotationNumber + 1) % 4];
+        }
+
         public Pattern Pattern { get; set; }
 
         public int RotationNumber { get; set; }
@@ -36,6 +41,7 @@ namespace UnitTestProject1.Tetris
     {
         ITetrisCup CurrentRotation { get; }
         void NextRotation();
+        ITetrisCup PeekNextRotation();
         Pattern Pattern { get; set; }
         int RotationNumber { get; set; }
         void ColorFigure();

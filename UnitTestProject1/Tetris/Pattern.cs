@@ -9,7 +9,7 @@ namespace UnitTestProject1.Tetris
     public class Pattern
     {
         public ITetrisCup[] Rotations;
-        private static Random rnd = new Random();
+        //private static Random rnd = new Random();
 
         public Pattern Clone(int color)
         {

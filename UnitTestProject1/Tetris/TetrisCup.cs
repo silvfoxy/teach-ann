@@ -62,9 +62,11 @@ namespace UnitTestProject1
         public void CopyFrom(ITetrisCup upperLayer1, Offset offset, int color)
         {//илья уверен, что ф-я недотестирована
             var upperLayer = (TetrisCup)upperLayer1;
+            //foreach (var cell in upperLayer)
             for (int i = 0; i < upperLayer.Height; i++)
                 for (int j = 0; j < upperLayer.Width; j++)
                     if (upperLayer._colors[j, i] != 0)
+                        //this._colors[cell + offset] = color;
                         this._colors[j + offset.X, i + offset.Y] = color;
 
         }
