@@ -42,7 +42,10 @@ namespace UnitTestProject1.Tetris
             scene.Figure = A.Fake<IFigure>();
             scene.Cup = A.Fake<ITetrisCup>();
             scene.Offset = new Offset(1, 1);
-            A.CallTo(() => scene.Figure.PeekNextRotation().Fits2(scene.Cup, new Offset(1, 1)))
+            ITetrisCup cup = A.Fake<ITetrisCup>();
+            A.CallTo(() => scene.Figure.PeekNextRotation())
+                .Returns(cup);
+            A.CallTo(() => cup.Fits2(scene.Cup, new Offset(1, 1)))
                 .Returns(FitsResult.BottomObstacle);
             scene.Rotate();
             scene.Offset.Y.Should().Be(0);
@@ -54,11 +57,14 @@ namespace UnitTestProject1.Tetris
             scene.Figure = A.Fake<IFigure>();
             scene.Cup = A.Fake<ITetrisCup>();
             scene.Offset = new Offset(1, 2);
-            A.CallTo(() => scene.Figure.PeekNextRotation().Fits2(scene.Cup, new Offset(1, 2)))
+            ITetrisCup cup = A.Fake<ITetrisCup>();
+            A.CallTo(() => scene.Figure.PeekNextRotation())
+                .Returns(cup);
+            A.CallTo(() => cup.Fits2(scene.Cup, new Offset(1, 2)))
                 .Returns(FitsResult.BottomObstacle);
-            A.CallTo(() => scene.Figure.PeekNextRotation().Fits2(scene.Cup, new Offset(1, 1)))
+            A.CallTo(() => cup.Fits2(scene.Cup, new Offset(1, 1)))
                 .Returns(FitsResult.BottomObstacle);
-            A.CallTo(() => scene.Figure.PeekNextRotation().Fits2(scene.Cup, new Offset(1, 0)))
+            A.CallTo(() => cup.Fits2(scene.Cup, new Offset(1, 0)))
                  .Returns(FitsResult.Fits);
             scene.Rotate();
             scene.Offset.Y.Should().Be(0);
@@ -73,7 +79,7 @@ namespace UnitTestProject1.Tetris
             A.CallTo(() => scene.Figure.PeekNextRotation().Fits2(scene.Cup, new Offset(1, 1)))
                 .Returns(FitsResult.TopObstacle);
             scene.Rotate();
-            scene.Offset.Y.Should().Be(1); 
+            scene.Offset.Y.Should().Be(1);
             scene.Offset.X.Should().Be(1);
         }
         [TestMethod]
@@ -83,9 +89,12 @@ namespace UnitTestProject1.Tetris
             scene.Cup = A.Fake<ITetrisCup>();
             scene.Figure = A.Fake<IFigure>();
             scene.Offset = new Offset(1, 2);
-            A.CallTo(() => scene.Figure.PeekNextRotation().Fits2(scene.Cup, new Offset(1, 2)))
+            ITetrisCup cup = A.Fake<ITetrisCup>();
+            A.CallTo(() => scene.Figure.PeekNextRotation())
+                .Returns(cup);
+            A.CallTo(() => cup.Fits2(scene.Cup, new Offset(1, 2)))
                 .Returns(FitsResult.RightObstacle);
-            A.CallTo(() => scene.Figure.PeekNextRotation().Fits2(scene.Cup, new Offset(0, 2)))
+            A.CallTo(() => cup.Fits2(scene.Cup, new Offset(0, 2)))
                  .Returns(FitsResult.Fits);
             scene.Rotate();
             scene.Offset.X.Should().Be(0);
@@ -233,7 +242,7 @@ namespace UnitTestProject1.Tetris
             A.CallTo(() => figure.CurrentRotation.Fits(scene.Cup, new Offset(3, 0)))
                 .Returns(true);
             scene.NextFigure(figure);
-            A.CallTo(()=>scene.Figure.ColorFigure()).MustHaveHappened();
+            A.CallTo(() => scene.Figure.ColorFigure()).MustHaveHappened();
         }
 
         [TestMethod]
