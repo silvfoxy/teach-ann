@@ -12,6 +12,7 @@ namespace UnitTestProject1
         void CopyFrom(ITetrisCup upperLayer, Offset offset, int color);
         bool Fits(ITetrisCup cup, Offset offset);
         FitsResult Fits2(ITetrisCup cup, Offset offset);
+        bool[] FindFullLines();
         int Width { get; }
         int Height { get; }
     }
@@ -69,6 +70,22 @@ namespace UnitTestProject1
                         //this._colors[cell + offset] = color;
                         this._colors[j + offset.X, i + offset.Y] = color;
 
+        }
+        public bool[] FindFullLines()
+        {
+            int length = this._size.Height;
+            var lines = new bool[length];
+            bool previousCellsAreFull = true;
+            for (int y = 0; y < this._size.Height; y++)
+                for (int x = 0; x < this._size.Width; x++)
+                {
+                    if (_colors[x, y] != 0 && previousCellsAreFull)
+                        if (x == (this._size.Width - 1))
+                            lines[y] = true;
+                    if (_colors[x, y] == 0)
+                        previousCellsAreFull = false;
+                }
+            return lines;
         }
         public bool Fits(ITetrisCup intoCup1, Offset offset)
         {

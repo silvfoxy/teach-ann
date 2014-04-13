@@ -3,7 +3,7 @@
   <Class Name="UnitTestProject1.Tetris.Figure" BaseTypeListCollapsed="true">
     <Position X="8" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAAAAAAEAAAAAAAAABQAAAAABAAAAAAgAAEAAA=</HashCode>
+      <HashCode>AAAEAAAAAAAAEAAAAAAAAABQAAAABBAAAAAAgAAEAAA=</HashCode>
       <FileName>Tetris\Figure.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -24,7 +24,7 @@
   <Class Name="UnitTestProject1.Tetris.Pattern">
     <Position X="6.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Tetris\Pattern.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -71,7 +71,7 @@
   <Class Name="UnitTestProject1.TetrisCup" BaseTypeListCollapsed="true">
     <Position X="12.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAABQAAACAAAAAAAEAAAACAUAAAAAAAAAIAABA=</HashCode>
+      <HashCode>AAAABAAABQAAACAAAAAAAEAAAACAUEAAAAAAAAIAABA=</HashCode>
       <FileName>Tetris\TetrisCup.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -93,7 +93,7 @@
   <Interface Name="UnitTestProject1.Tetris.IFigure" Collapsed="true">
     <Position X="8" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAEAAAAAAAAABQAAAAABAAAAAAgAAEAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAABQAAAABBAAAAAAgAAEAAA=</HashCode>
       <FileName>Tetris\Figure.cs</FileName>
     </TypeIdentifier>
   </Interface>
@@ -114,7 +114,7 @@
   <Interface Name="UnitTestProject1.ITetrisCup" Collapsed="true">
     <Position X="12.75" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAABQAAACAAAAAAAEAAAAAAEAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAABAAABQAAACAAAAAAAEAAAAAAEAAAAAAAAAAAABA=</HashCode>
       <FileName>Tetris\TetrisCup.cs</FileName>
     </TypeIdentifier>
   </Interface>

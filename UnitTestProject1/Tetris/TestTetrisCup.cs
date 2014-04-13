@@ -174,5 +174,21 @@ namespace UnitTestProject1
             TetrisCup lower = new TetrisCup(3, 2, new[] { new Point(1, 0) });
             upper.Fits2(lower, new Offset(0, 0)).Should().Be(FitsResult.BottomObstacle);
         }
+        [TestMethod]
+        public void FindFullLines_Should_Return_Bool_Array()
+        {
+            TetrisCup cup = new TetrisCup(3, 2, new[] { new Point(0, 0), new Point(1, 0), new Point(2, 0), new Point(2, 1) });
+            var expectedLines = cup.FindFullLines();
+            expectedLines[0].Should().BeTrue();
+            expectedLines[1].Should().BeFalse();
+        }
+        [TestMethod]
+        public void FindFullLines_When_There_Are_No_Full_Line_Should_Return_False_Bool_Array()
+        {
+            TetrisCup cup = new TetrisCup(3, 2, new[] {new Point(0, 1), new Point(2, 0), new Point(2, 1) });
+            var expectedLines = cup.FindFullLines();
+            expectedLines[0].Should().BeFalse();
+            expectedLines[1].Should().BeFalse();
+        }
     }
 }
