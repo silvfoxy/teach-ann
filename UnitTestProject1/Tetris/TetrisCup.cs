@@ -13,6 +13,7 @@ namespace UnitTestProject1
         bool Fits(ITetrisCup cup, Offset offset);
         FitsResult Fits2(ITetrisCup cup, Offset offset);
         bool[] FindFullLines();
+        void EraseFullLines(bool[] fullLines);
         int Width { get; }
         int Height { get; }
     }
@@ -86,6 +87,18 @@ namespace UnitTestProject1
                         previousCellsAreFull = false;
                 }
             return lines;
+        }
+        public void EraseFullLines(bool[] fullLines)
+        {
+            for (int i=0; i<_size.Height; i++)
+                if (fullLines[i])
+                {
+                    for (int y = _size.Height - 1; y > 1; y++)
+                        for (int x = 0; x < _size.Width; x++)
+                            _colors[x, y] = _colors[x, y - 1];
+                    for (int x = 0; x < _size.Width; x++)
+                        _colors[x, 0] = 0;
+                }
         }
         public bool Fits(ITetrisCup intoCup1, Offset offset)
         {
