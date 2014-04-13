@@ -174,7 +174,7 @@ namespace UnitTestProject1
             TetrisCup lower = new TetrisCup(3, 2, new[] { new Point(1, 0) });
             upper.Fits2(lower, new Offset(0, 0)).Should().Be(FitsResult.BottomObstacle);
         }
-        [TestMethod]
+        /*[TestMethod]
         public void FindFullLines_Should_Return_Bool_Array()
         {
             TetrisCup cup = new TetrisCup(3, 2, new[] { new Point(0, 0), new Point(1, 0), new Point(2, 0), new Point(2, 1) });
@@ -198,24 +198,12 @@ namespace UnitTestProject1
             expectedLines[0].Should().BeTrue();
             expectedLines[1].Should().BeFalse();
             expectedLines[2].Should().BeTrue();
-        }
+        }*/
         [TestMethod]
         public void EraseFullLines_Should_Delete_Full_Lines()
         {
-            TetrisCup cup = new TetrisCup(3, 2, new[] { new Point(0, 0), new Point(1, 0), new Point(2, 0), new Point(2, 1) });
-            var fullLines = cup.FindFullLines();
-            cup.EraseFullLines(fullLines);
-            fullLines = cup.FindFullLines();
-            fullLines[0].Should().BeFalse();
-            fullLines[1].Should().BeFalse();
-        }
-        [TestMethod]
-        public void EraseFullLines_Should_Delete_Full_Lines1()
-        {
-            TetrisCup cup = new TetrisCup(2, 2, new[] { new Point(0, 1), new Point(1, 0), new Point(1, 1)});
-            //var fullLines = cup.FindFullLines();
-            var fullLines = new[] {false, true};
-            cup.EraseFullLines(fullLines);
+            var cup = new TetrisCup(2, 2, new[] { new Point(0, 1), new Point(1, 0), new Point(1, 1)});
+            cup.EraseFullLines();
             cup.GetColorOfPoint(new Point(0, 0)).Should().Be(0);
             cup.GetColorOfPoint(new Point(1, 0)).Should().Be(0);
             cup.GetColorOfPoint(new Point(0, 1)).Should().Be(0);

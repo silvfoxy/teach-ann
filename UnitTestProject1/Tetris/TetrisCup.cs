@@ -12,8 +12,6 @@ namespace UnitTestProject1
         void CopyFrom(ITetrisCup upperLayer, Offset offset, int color);
         bool Fits(ITetrisCup cup, Offset offset);
         FitsResult Fits2(ITetrisCup cup, Offset offset);
-        bool[] FindFullLines();
-        void EraseFullLines(bool[] fullLines);
         int Width { get; }
         int Height { get; }
     }
@@ -72,15 +70,14 @@ namespace UnitTestProject1
                         this._colors[j + offset.X, i + offset.Y] = color;
 
         }
-        public bool[] FindFullLines()
+
+        public void EraseFullLines()
         {
-            int length = this._size.Height;
-            var lines = new bool[length];
-            for (int y = 0; y < this._size.Height; y++)
-            {
-                lines[y] = IsLineFull(y);
-            }
-            return lines;
+            for (int i = 0; i < _size.Height; i++)
+                if (IsLineFull(i))
+                {
+                    EraseLine(i);
+                }
         }
 
         private bool IsLineFull(int y)
@@ -91,18 +88,15 @@ namespace UnitTestProject1
             return true;
         }
 
-        public void EraseFullLines(bool[] fullLines)
+        private void EraseLine(int i)
         {
-            for (int i = 0; i < _size.Height; i++)
-                if (fullLines[i])
-                {
-                    for (int y = i; y >= 1; y--)
-                        for (int x = 0; x < _size.Width; x++)
-                            _colors[x, y] = _colors[x, y - 1];
-                    for (int x = 0; x < _size.Width; x++)
-                        _colors[x, 0] = 0;
-                }
+            for (int y = i; y >= 1; y--)
+                for (int x = 0; x < _size.Width; x++)
+                    _colors[x, y] = _colors[x, y - 1];
+            for (int x = 0; x < _size.Width; x++)
+                _colors[x, 0] = 0;
         }
+
         public bool Fits(ITetrisCup intoCup1, Offset offset)
         {
             var intoCup = (TetrisCup)intoCup1;
