@@ -78,6 +78,8 @@ namespace UnitTestProject1
             var lines = new bool[length];
             bool previousCellsAreFull = true;
             for (int y = 0; y < this._size.Height; y++)
+            {
+                previousCellsAreFull = true;
                 for (int x = 0; x < this._size.Width; x++)
                 {
                     if (_colors[x, y] != 0 && previousCellsAreFull)
@@ -86,6 +88,7 @@ namespace UnitTestProject1
                     if (_colors[x, y] == 0)
                         previousCellsAreFull = false;
                 }
+            }
             return lines;
         }
         public void EraseFullLines(bool[] fullLines)
@@ -93,7 +96,7 @@ namespace UnitTestProject1
             for (int i=0; i<_size.Height; i++)
                 if (fullLines[i])
                 {
-                    for (int y = _size.Height - 1; y > 1; y++)
+                    for (int y = i; y >= 1; y--)
                         for (int x = 0; x < _size.Width; x++)
                             _colors[x, y] = _colors[x, y - 1];
                     for (int x = 0; x < _size.Width; x++)
