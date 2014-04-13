@@ -76,21 +76,27 @@ namespace UnitTestProject1
         {
             int length = this._size.Height;
             var lines = new bool[length];
-            bool previousCellsAreFull = true;
             for (int y = 0; y < this._size.Height; y++)
             {
-                previousCellsAreFull = true;
-                for (int x = 0; x < this._size.Width; x++)
-                {
-                    if (_colors[x, y] != 0 && previousCellsAreFull)
-                        if (x == (this._size.Width - 1))
-                            lines[y] = true;
-                    if (_colors[x, y] == 0)
-                        previousCellsAreFull = false;
-                }
+                lines[y] = IsLineFull(y);
             }
             return lines;
         }
+
+        private bool IsLineFull(int y)
+        {
+            bool previousCellsAreFull = true;
+            for (int x = 0; x < this._size.Width; x++)
+            {
+                if (_colors[x, y] != 0 && previousCellsAreFull)
+                    if (x == (this._size.Width - 1))
+                        return true;
+                if (_colors[x, y] == 0)
+                    previousCellsAreFull = false;
+            }
+            return false;
+        }
+
         public void EraseFullLines(bool[] fullLines)
         {
             for (int i=0; i<_size.Height; i++)
