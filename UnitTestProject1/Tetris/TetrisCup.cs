@@ -8,6 +8,8 @@ namespace UnitTestProject1
     public interface ITetrisCup
     {
         int GetColorOfPoint(Point point);
+        bool IsLineFull(int y);
+        void EraseLine(int i);
         ITetrisCup Clone(int color);
         void CopyFrom(ITetrisCup upperLayer, Offset offset, int color);
         bool Fits(ITetrisCup cup, Offset offset);
@@ -71,16 +73,7 @@ namespace UnitTestProject1
 
         }
 
-        public void EraseFullLines()
-        {
-            for (int i = 0; i < _size.Height; i++)
-                if (IsLineFull(i))
-                {
-                    EraseLine(i);
-                }
-        }
-
-        private bool IsLineFull(int y)
+        public bool IsLineFull(int y)
         {
             for (int x = 0; x < this._size.Width; x++)
                 if (_colors[x, y] == 0) 
@@ -88,7 +81,7 @@ namespace UnitTestProject1
             return true;
         }
 
-        private void EraseLine(int i)
+        public void EraseLine(int i)
         {
             for (int y = i; y >= 1; y--)
                 for (int x = 0; x < _size.Width; x++)

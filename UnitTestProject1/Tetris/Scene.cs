@@ -93,6 +93,14 @@ namespace UnitTestProject1.Tetris
             cloneCup.CopyFrom(Figure.CurrentRotation, Offset, this.Figure.Color);
             return cloneCup.GetColorOfPoint(point);
         }
+        public void EraseFullLines()
+        {
+            for (int i = 0; i < Cup.Height; i++)
+                if (Cup.IsLineFull(i))
+                {
+                    Cup.EraseLine(i);
+                }
+        }
     }
 
     public interface IRandomFigureSelector

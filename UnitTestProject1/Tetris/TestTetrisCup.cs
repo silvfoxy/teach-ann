@@ -189,25 +189,27 @@ namespace UnitTestProject1
             var expectedLines = cup.FindFullLines();
             expectedLines[0].Should().BeFalse();
             expectedLines[1].Should().BeFalse();
-        }
-        [TestMethod]
-        public void FindFullLines_Should_Return_Bool_Array1()
-        {
-            TetrisCup cup = new TetrisCup(2, 3, new[] { new Point(0, 0), new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(0, 2) });
-            var expectedLines = cup.FindFullLines();
-            expectedLines[0].Should().BeTrue();
-            expectedLines[1].Should().BeFalse();
-            expectedLines[2].Should().BeTrue();
         }*/
         [TestMethod]
-        public void EraseFullLines_Should_Delete_Full_Lines()
+        public void IsLineFull_Should_Return_Bool_Value_Is_Line_Full_Or_Not()
         {
-            var cup = new TetrisCup(2, 2, new[] { new Point(0, 1), new Point(1, 0), new Point(1, 1)});
-            cup.EraseFullLines();
+            TetrisCup cup = new TetrisCup(2, 3, new[] { new Point(0, 0), new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(0, 2) });
+            cup.IsLineFull(0).Should().BeTrue();
+            cup.IsLineFull(1).Should().BeFalse();
+            cup.IsLineFull(2).Should().BeTrue();
+        }
+        [TestMethod]
+        public void EraseLine_Should_Reset_All_Cells_In_Line_And_Shift_Others_Down()
+        {
+            TetrisCup cup = new TetrisCup(2, 3, new[] { new Point(0, 0), new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(0, 2) });
+            cup.EraseLine(0);
+            cup.EraseLine(2);
             cup.GetColorOfPoint(new Point(0, 0)).Should().Be(0);
             cup.GetColorOfPoint(new Point(1, 0)).Should().Be(0);
             cup.GetColorOfPoint(new Point(0, 1)).Should().Be(0);
-            cup.GetColorOfPoint(new Point(1, 1)).Should().Be(-1);
+            cup.GetColorOfPoint(new Point(1, 1)).Should().Be(0); 
+            cup.GetColorOfPoint(new Point(0, 2)).Should().Be(0);
+            cup.GetColorOfPoint(new Point(1, 2)).Should().Be(-1);
         }
     }
 }

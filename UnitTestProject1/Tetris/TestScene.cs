@@ -275,5 +275,18 @@ namespace UnitTestProject1.Tetris
             A.CallTo(() => cloneCup.CopyFrom(scene.Figure.CurrentRotation, scene.Offset, 42))
                 .MustHaveHappened();
         }
+        [TestMethod]
+        public void EraseFullLines_Should_Delete_Full_Lines()
+        {
+            var scene = new Scene();
+            scene.Cup = A.Fake<ITetrisCup>();
+            A.CallTo(() => scene.Cup.IsLineFull(0)).Returns(true);
+            A.CallTo(() => scene.Cup.IsLineFull(1)).Returns(false);
+            A.CallTo(() => scene.Cup.IsLineFull(2)).Returns(true);
+            A.CallTo(() => scene.Cup.Height).Returns(3);
+            scene.EraseFullLines();
+            A.CallTo(() => scene.Cup.EraseLine(0)).MustHaveHappened();
+            A.CallTo(() => scene.Cup.EraseLine(2)).MustHaveHappened();
+        }
     }
 }
