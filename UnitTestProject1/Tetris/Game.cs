@@ -29,6 +29,7 @@ namespace UnitTestProject1.Tetris
             {
                 Scene.Print();
                 Scene.NextFigure(_randomFigureSelector.RandomFigure());
+                Scene.EraseFullLines();
             }
         }
 

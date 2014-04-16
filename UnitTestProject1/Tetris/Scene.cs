@@ -14,6 +14,7 @@ namespace UnitTestProject1.Tetris
         void MoveRight();
         bool MoveDown();
         void Rotate();
+        void EraseFullLines();
         bool NextFigure(IFigure figure);
         void Print();
         int GetColorOfPoint(Point point);

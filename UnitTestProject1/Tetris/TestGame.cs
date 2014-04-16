@@ -52,6 +52,16 @@ namespace UnitTestProject1.Tetris
             A.CallTo(() => scene.Print()).MustHaveHappened();
         }
         [TestMethod]
+        public void Tick_When_Print_Should_EraseFullLines()
+        {
+            var scene = A.Fake<IScene>();
+            var randomFigureSelector = A.Fake<IRandomFigureSelector>();
+            var game = new Game(scene, randomFigureSelector);
+            A.CallTo(() => scene.MoveDown()).Returns(false);
+            game.Tick();
+            A.CallTo(() => scene.EraseFullLines()).MustHaveHappened();
+        }
+        [TestMethod]
         public void Tick_When_MoveDown_Is_Not_Possible_Should_Select_NextFigure()
         {
             var scene = A.Fake<IScene>();
