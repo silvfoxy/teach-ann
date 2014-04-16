@@ -6,6 +6,7 @@ namespace UnitTestProject1.Tetris
     {
         public IScene Scene;
         private readonly IRandomFigureSelector _randomFigureSelector;
+        public int Score;
 
         public Game(IScene scene, IRandomFigureSelector randomFigureSelector)
         {
@@ -30,6 +31,7 @@ namespace UnitTestProject1.Tetris
                 Scene.Print();
                 Scene.NextFigure(_randomFigureSelector.RandomFigure());
                 Scene.EraseFullLines();
+                Score += 100;
             }
         }
 

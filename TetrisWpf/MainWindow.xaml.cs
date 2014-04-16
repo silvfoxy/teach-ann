@@ -62,6 +62,7 @@ namespace TetrisWpf
                     rectangle.Margin = new Thickness(1, 1, 0, 0);
                     _uniformGrid.Children.Add(rectangle);
                 }
+            _score.Text = Game.Score.ToString();
         }
 
         private void MainWindow_OnKeyDown(object sender, KeyEventArgs e)
