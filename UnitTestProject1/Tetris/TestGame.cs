@@ -62,6 +62,30 @@ namespace UnitTestProject1.Tetris
             A.CallTo(() => scene.EraseFullLines()).MustHaveHappened();
         }
         [TestMethod]
+        public void Tick_When_EraseFullLines_Should_Set_Score()
+        {
+            var scene = A.Fake<IScene>();
+            var randomFigureSelector = A.Fake<IRandomFigureSelector>();
+            var game = new Game(scene, randomFigureSelector);
+            game.Score = 100;
+            A.CallTo(() => scene.MoveDown()).Returns(false);
+            A.CallTo(() => scene.EraseFullLines()).Returns(1);
+            game.Tick();
+            A.CallTo(() => scene.EraseFullLines()).MustHaveHappened();
+            game.Score.Should().Be(111);
+        }
+        [TestMethod]
+        public void Tick_When_Print_Should_Increment_Score()
+        {
+            var scene = A.Fake<IScene>();
+            var randomFigureSelector = A.Fake<IRandomFigureSelector>();
+            var game = new Game(scene, randomFigureSelector);
+            A.CallTo(() => scene.MoveDown()).Returns(false);
+            game.Score = 100;
+            game.Tick();
+            game.Score.Should().Be(101);
+        }
+        [TestMethod]
         public void Tick_When_MoveDown_Is_Not_Possible_Should_Select_NextFigure()
         {
             var scene = A.Fake<IScene>();

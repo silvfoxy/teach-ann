@@ -6,8 +6,7 @@ namespace UnitTestProject1.Tetris
     {
         public IScene Scene;
         private readonly IRandomFigureSelector _randomFigureSelector;
-        public int Score;
-
+        public int Score {get; set;}
         public Game(IScene scene, IRandomFigureSelector randomFigureSelector)
         {
             scene.Cup = new TetrisCup(15, 25, new Point[] {});
@@ -29,9 +28,10 @@ namespace UnitTestProject1.Tetris
             if (!isPossible)
             {
                 Scene.Print();
+                Score++;
                 Scene.NextFigure(_randomFigureSelector.RandomFigure());
-                Scene.EraseFullLines();
-                Score += 100;
+                int counter = Scene.EraseFullLines();
+                Score += counter * 10;
             }
         }
 
