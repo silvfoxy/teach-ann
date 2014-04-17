@@ -14,7 +14,7 @@ namespace UnitTestProject1.Tetris
         void MoveRight();
         bool MoveDown();
         void Rotate();
-        void EraseFullLines();
+        int EraseFullLines();
         bool NextFigure(IFigure figure);
         void Print();
         int GetColorOfPoint(Point point);
@@ -94,13 +94,16 @@ namespace UnitTestProject1.Tetris
             cloneCup.CopyFrom(Figure.CurrentRotation, Offset, this.Figure.Color);
             return cloneCup.GetColorOfPoint(point);
         }
-        public void EraseFullLines()
+        public int EraseFullLines()
         {
+            int CountFullLines = 0;
             for (int i = 0; i < Cup.Height; i++)
                 if (Cup.IsLineFull(i))
                 {
                     Cup.EraseLine(i);
+                    CountFullLines++;
                 }
+            return CountFullLines;
         }
     }
 

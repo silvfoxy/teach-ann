@@ -270,5 +270,15 @@ namespace UnitTestProject1.Tetris
             A.CallTo(() => _scene.Cup.EraseLine(0)).MustHaveHappened();
             A.CallTo(() => _scene.Cup.EraseLine(2)).MustHaveHappened();
         }
+        [TestMethod]
+        public void EraseFullLines_Should_Return_Number_Of_Full_Lines()
+        {
+
+            A.CallTo(() => _scene.Cup.IsLineFull(0)).Returns(true);
+            A.CallTo(() => _scene.Cup.IsLineFull(1)).Returns(false);
+            A.CallTo(() => _scene.Cup.IsLineFull(2)).Returns(true);
+            A.CallTo(() => _scene.Cup.Height).Returns(3);
+            _scene.EraseFullLines().Should().Be(2);
+        }
     }
 }
