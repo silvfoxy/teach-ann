@@ -73,15 +73,11 @@ namespace UnitTestProject1
             return cloneTetrisCup;
         }
         public void CopyFrom(ITetrisCup upperLayer1, Offset offset, int color)
-        {//илья уверен, что ф-я недотестирована
+        {
             var upperLayer = (TetrisCup)upperLayer1;
-            //foreach (var cell in upperLayer)
-            for (int i = 0; i < upperLayer.Height; i++)
-                for (int j = 0; j < upperLayer.Width; j++)
-                    if (upperLayer._colors[j, i] != 0)
-                        //this._colors[cell + offset] = color;
-                        this._colors[j + offset.X, i + offset.Y] = color;
-
+            foreach (var point in upperLayer.AllCells)
+                if (upperLayer[point] != 0)
+                    this[point + offset] = color;
         }
 
         public bool IsLineFull(int y)
@@ -107,11 +103,11 @@ namespace UnitTestProject1
             if (intoCup._size.StrictlyLess(this._size + offset))
                 return false;
             if (offset.X < 0) return false;
-            for (int y = 0; y < this._size.Height; y++)
-                for (int x = 0; x < this._size.Width; x++)
-                    if (this._colors[x, y] != 0 &&
-                        intoCup._colors[x + offset.X, y + offset.Y] != 0)
-                        return false;
+            //for (int y = 0; y < this._size.Height; y++)
+            //for (int x = 0; x < this._size.Width; x++)
+            foreach (var point in AllCells)
+                if (this[point] != 0 && intoCup[point+offset] != 0)
+                    return false;
             return true;
         }
     }
