@@ -34,6 +34,15 @@ namespace UnitTestProject1
 
         public int Width { get { return _size.Width; } }
         public int Height { get { return _size.Height; } }
+        public IEnumerable<Point> AllCells
+        {
+            get
+            {
+                for (int i = 0; i < _size.Width; i++)
+                    for (int j = 0; j < _size.Height; j++)
+                        yield return new Point(i, j);
+            }
+        }
         public TetrisCup(int width, int height, Point[] pattern)
         {
             this._size = new Size(width, height);
@@ -49,16 +58,18 @@ namespace UnitTestProject1
         {
             return _colors[point.X, point.Y];
         }
+        public int this[Point point]
+        {
+            get { return _colors[point.X, point.Y]; }
+            set { _colors[point.X, point.Y] = value; }
+        }
         public ITetrisCup Clone(int color)
         {
             TetrisCup cloneTetrisCup = new TetrisCup(_size.Width, _size.Height, _pattern);
-            for (int i = 0; i < _size.Width; i++)
-                for (int j = 0; j < _size.Height; j++)
-                {
-                    if (_colors[i, j] == -1)
-                        cloneTetrisCup._colors[i, j] = color;
-                    else cloneTetrisCup._colors[i, j] = _colors[i, j];
-                }
+            foreach (var point in AllCells)
+            {
+                cloneTetrisCup[point] = this[point] == -1 ? color : this[point];
+            }
             return cloneTetrisCup;
         }
         public void CopyFrom(ITetrisCup upperLayer1, Offset offset, int color)
@@ -76,7 +87,7 @@ namespace UnitTestProject1
         public bool IsLineFull(int y)
         {
             for (int x = 0; x < this._size.Width; x++)
-                if (_colors[x, y] == 0) 
+                if (_colors[x, y] == 0)
                     return false;
             return true;
         }

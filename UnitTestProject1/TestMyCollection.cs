@@ -59,7 +59,7 @@ namespace UnitTestProject1
             return last;
         }
         [TestMethod]
-        public void MyElementAt_Should_Return_Element_From_The_Given_Index()
+        public void MyElementAt_Should_Return_Element_At_The_Given_Index()
         {
             var elements = Enumerable.Range(0, 10);
             elements.ElementAt(0).Should().Be(0);
@@ -91,7 +91,12 @@ namespace UnitTestProject1
         }
         private IEnumerable<int> Where(IEnumerable<int> source, Func<int, bool> predicate)
         {
-            return new WhereEnumerable(source, predicate);
+            //return new WhereEnumerable(source, predicate);
+            foreach (var item in source)
+            {
+                if (predicate(item))
+                    yield return item;
+            }
         }
         private bool IsPrime(int num)
         {
@@ -136,7 +141,11 @@ namespace UnitTestProject1
         }
         private IEnumerable<T> Select<T>(IEnumerable<int> source, Func<int, T> selector)
         {
-            return new SelectEnumerable<T>(source, selector);
+            //return new SelectEnumerable<T>(source, selector);
+            foreach (var item in source)
+            {
+                yield return selector(item);
+            }
         }
     }
 }
