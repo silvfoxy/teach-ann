@@ -14,6 +14,7 @@ namespace UnitTestProject1
         void CopyFrom(ITetrisCup upperLayer, Offset offset, int color);
         bool Fits(ITetrisCup cup, Offset offset);
         FitsResult Fits2(ITetrisCup cup, Offset offset);
+        IEnumerable<Point> AllCells { get; }
         int Width { get; }
         int Height { get; }
     }
@@ -38,8 +39,8 @@ namespace UnitTestProject1
         {
             get
             {
-                for (int i = 0; i < _size.Width; i++)
-                    for (int j = 0; j < _size.Height; j++)
+                for (int j = 0; j < _size.Height; j++)
+                    for (int i = 0; i < _size.Width; i++)
                         yield return new Point(i, j);
             }
         }
@@ -103,10 +104,8 @@ namespace UnitTestProject1
             if (intoCup._size.StrictlyLess(this._size + offset))
                 return false;
             if (offset.X < 0) return false;
-            //for (int y = 0; y < this._size.Height; y++)
-            //for (int x = 0; x < this._size.Width; x++)
             foreach (var point in AllCells)
-                if (this[point] != 0 && intoCup[point+offset] != 0)
+                if (this[point] != 0 && intoCup[point + offset] != 0)
                     return false;
             return true;
         }
