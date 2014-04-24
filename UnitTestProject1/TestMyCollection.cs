@@ -43,7 +43,52 @@ namespace UnitTestProject1
             Where(elements, x => IsPrime(x)).Should().Equal(0, 1, 2, 3, 5, 7);
             Where(elements, IsPrime).Should().Equal(0, 1, 2, 3, 5, 7);
         }
-
+        [TestMethod]
+        public void MyLast_Should_Return_The_Last_Element()
+        {
+            var elements = Enumerable.Range(0, 10);
+            //elements.Last().Should().Be(9);
+            MyLast(elements).Should().Be(9);
+        }
+        private int MyLast(IEnumerable<int> source)
+        {
+            var sourceEnumerator = source.GetEnumerator();
+            int last = sourceEnumerator.Current;
+            do { last = sourceEnumerator.Current; }
+            while (sourceEnumerator.MoveNext());
+            return last;
+        }
+        [TestMethod]
+        public void MyElementAt_Should_Return_Element_From_The_Given_Index()
+        {
+            var elements = Enumerable.Range(0, 10);
+            elements.ElementAt(0).Should().Be(0);
+            MyElementAt(elements, 1).Should().Be(1);
+        }
+        private int MyElementAt(IEnumerable<int> source, int index)
+        {
+            var sourceEnumerator = source.GetEnumerator();
+            int elementAtIndex = sourceEnumerator.Current;
+            for (int i = 0; i <= index; i++)
+            {
+                sourceEnumerator.MoveNext();
+                elementAtIndex = sourceEnumerator.Current;
+            }
+            return elementAtIndex;
+        }
+        [TestMethod]
+        public void MyFirst_Should_Return_The_First_Element()
+        {
+            var elements = Enumerable.Range(0, 10);
+            //elements.First().Should().Be(0);
+            MyFirst(elements).Should().Be(0);
+        }
+        private int MyFirst(IEnumerable<int> source)
+        {
+            var sourceEnumerator = source.GetEnumerator();
+            sourceEnumerator.MoveNext();
+            return sourceEnumerator.Current;
+        }
         private IEnumerable<int> Where(IEnumerable<int> source, Func<int, bool> predicate)
         {
             return new WhereEnumerable(source, predicate);
@@ -61,8 +106,16 @@ namespace UnitTestProject1
         public void All_When_All_Elements_True_Should_Return_True()
         {
             var elements = Enumerable.Range(5, 1000);
-            elements.Where(IsPrime).All(x=>(x-1)%6==0 || (x+1)%6==0).Should().BeTrue();
-            
+            All(elements.Where(IsPrime), x=>(x-1)%6==0 || (x+1)%6==0).Should().BeTrue();            
+        }
+        public bool All(IEnumerable<int> source, Func<int, bool> predicate)
+        {
+            foreach(var x in source)
+            {
+                if (!predicate(x))
+                    return false;
+            }
+            return true;
         }
         [TestMethod]
         public void EnumRange_1_5_Should_Be_1_2_3_4_5()
