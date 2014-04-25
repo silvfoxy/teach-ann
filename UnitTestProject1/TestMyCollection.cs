@@ -79,14 +79,17 @@ namespace UnitTestProject1
         [TestMethod]
         public void MyFirst_Should_Return_The_First_Element()
         {
-            var elements = Enumerable.Range(0, 10);
-            //elements.First().Should().Be(0);
+            var elements = Enumerable.Range(0,10);
+            elements.First().Should().Be(0);
+            MyFirst(elements).Should().Be(0);
+            elements = null;
             MyFirst(elements).Should().Be(0);
         }
         private int MyFirst(IEnumerable<int> source)
         {
+            if (source == null) throw new ArgumentNullException();
             var sourceEnumerator = source.GetEnumerator();
-            sourceEnumerator.MoveNext();
+            if (!sourceEnumerator.MoveNext()) throw new InvalidOperationException();
             return sourceEnumerator.Current;
         }
         private IEnumerable<int> Where(IEnumerable<int> source, Func<int, bool> predicate)
