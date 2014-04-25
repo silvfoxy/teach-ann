@@ -46,14 +46,18 @@ namespace UnitTestProject1
         [TestMethod]
         public void MyLast_Should_Return_The_Last_Element()
         {
-            var elements = Enumerable.Range(0, 10);
-            //elements.Last().Should().Be(9);
-            MyLast(elements).Should().Be(9);
+            var elements = Enumerable.Range(0, 1);
+            elements.Last().Should().Be(0);
+            MyLast(elements).Should().Be(0);
         }
         private int MyLast(IEnumerable<int> source)
         {
+            if (source == null) throw new ArgumentNullException();
+
             var sourceEnumerator = source.GetEnumerator();
             int last = sourceEnumerator.Current;
+            if (!sourceEnumerator.MoveNext()) throw new InvalidOperationException();
+            
             do { last = sourceEnumerator.Current; }
             while (sourceEnumerator.MoveNext());
             return last;
