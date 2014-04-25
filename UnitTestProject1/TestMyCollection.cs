@@ -67,23 +67,26 @@ namespace UnitTestProject1
         }
         private int MyElementAt(IEnumerable<int> source, int index)
         {
+            if (source == null) throw new ArgumentNullException();
+            if (index < 0) throw new IndexOutOfRangeException();
             var sourceEnumerator = source.GetEnumerator();
             int elementAtIndex = sourceEnumerator.Current;
             for (int i = 0; i <= index; i++)
             {
-                sourceEnumerator.MoveNext();
-                elementAtIndex = sourceEnumerator.Current;
+                if (sourceEnumerator.MoveNext())
+                    elementAtIndex = sourceEnumerator.Current;
+                else throw new IndexOutOfRangeException();
             }
             return elementAtIndex;
         }
         [TestMethod]
         public void MyFirst_Should_Return_The_First_Element()
         {
-            var elements = Enumerable.Range(0,10);
+            var elements = Enumerable.Range(0, 10);
             elements.First().Should().Be(0);
             MyFirst(elements).Should().Be(0);
-            elements = null;
-            MyFirst(elements).Should().Be(0);
+            //elements = null;
+            //MyFirst(elements).Should().Be(0);
         }
         private int MyFirst(IEnumerable<int> source)
         {
@@ -108,17 +111,17 @@ namespace UnitTestProject1
                 if (num % i == 0) return false;
             }
             return true;*/
-            return num<=3 || Enumerable.Range(2, num/2+1).All(x => num % x != 0);
+            return num <= 3 || Enumerable.Range(2, num / 2 + 1).All(x => num % x != 0);
         }
         [TestMethod]
         public void All_When_All_Elements_True_Should_Return_True()
         {
             var elements = Enumerable.Range(5, 1000);
-            All(elements.Where(IsPrime), x=>(x-1)%6==0 || (x+1)%6==0).Should().BeTrue();            
+            All(elements.Where(IsPrime), x => (x - 1) % 6 == 0 || (x + 1) % 6 == 0).Should().BeTrue();
         }
         public bool All(IEnumerable<int> source, Func<int, bool> predicate)
         {
-            foreach(var x in source)
+            foreach (var x in source)
             {
                 if (!predicate(x))
                     return false;
