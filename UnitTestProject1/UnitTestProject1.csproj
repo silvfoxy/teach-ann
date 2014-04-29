@@ -63,6 +63,7 @@
     <Compile Include="Groups.cs" />
     <Compile Include="Lesson2.cs" />
     <Compile Include="MyCollection.cs" />
+    <Compile Include="MySelectManyEnumerable.cs" />
     <Compile Include="Organization.cs" />
     <Compile Include="SelectEnumerable.cs" />
     <Compile Include="TestForeach.cs" />

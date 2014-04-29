@@ -57,7 +57,7 @@ namespace UnitTestProject1
             var sourceEnumerator = source.GetEnumerator();
             int last = sourceEnumerator.Current;
             if (!sourceEnumerator.MoveNext()) throw new InvalidOperationException();
-            
+
             do { last = sourceEnumerator.Current; }
             while (sourceEnumerator.MoveNext());
             return last;
@@ -91,6 +91,22 @@ namespace UnitTestProject1
             MyFirst(elements).Should().Be(0);
             //elements = null;
             //MyFirst(elements).Should().Be(0);
+        }
+        [TestMethod]
+        public void MySelectMany_Should_Return_()
+        {
+            string[] elements = { "ele", "men", "ts" };
+            elements.SelectMany(x => x.ToCharArray()).Should().Equal(new[] { 'e', 'l', 'e', 'm', 'e', 'n', 't', 's' });
+            MySelectMany(elements, x => x.ToCharArray()).Should().Equal(new[] { 'e', 'l', 'e', 'm', 'e', 'n', 't', 's' });
+        }
+        private IEnumerable<char> MySelectMany(IEnumerable<string> source, Func<string, IEnumerable<char>> selector)
+        {
+            foreach (var item in source)
+            {
+                var arr = selector(item);
+                foreach (var a in arr)
+                    yield return a;
+            }
         }
         private int MyFirst(IEnumerable<int> source)
         {
