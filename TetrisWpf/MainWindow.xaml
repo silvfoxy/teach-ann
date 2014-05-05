@@ -6,8 +6,8 @@
         KeyDown="MainWindow_OnKeyDown">
     <Grid Margin="3,0,87,0.4">
         <Viewbox Stretch="Uniform" HorizontalAlignment="Left">
-            <Border Width="150" Height="250" BorderBrush="DimGray"  BorderThickness="2, 0, 2, 0">
-                <UniformGrid Columns="15" x:Name="_uniformGrid"/>
+            <Border Width="100" Height="200" BorderBrush="DimGray"  BorderThickness="2, 0, 2, 0">
+                <UniformGrid Columns="10" x:Name="_uniformGrid"/>
             </Border>
         </Viewbox>
         <TextBlock x:Name="_score" HorizontalAlignment="Left" Margin="222,43,-88,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" Width="60" Height="28" Foreground="#FFFFFFFA" FontSize="15"/>

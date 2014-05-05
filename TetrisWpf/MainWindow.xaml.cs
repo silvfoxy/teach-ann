@@ -40,7 +40,7 @@ namespace TetrisWpf
         public MainWindow()
         {
             Game = new Game(new Scene(), new RandomFigureSelector());
-            DispatcherTimer = new DispatcherTimer(TimeSpan.FromSeconds(0.3), DispatcherPriority.ApplicationIdle, OnTick, Dispatcher);
+            DispatcherTimer = new DispatcherTimer(TimeSpan.FromSeconds(Game.SpeedInSeconds), DispatcherPriority.ApplicationIdle, OnTick, Dispatcher);
             InitializeComponent();
         }
 
