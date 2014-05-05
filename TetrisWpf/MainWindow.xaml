@@ -11,5 +11,7 @@
             </Border>
         </Viewbox>
         <TextBlock x:Name="_score" HorizontalAlignment="Left" Margin="222,43,-88,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" Width="60" Height="28" Foreground="#FFFFFFFA" FontSize="15"/>
+        <TextBlock x:Name="_level" HorizontalAlignment="Left" Margin="222,71,-88,0" TextWrapping="Wrap" Text="23" VerticalAlignment="Top" Width="60" Height="28" Foreground="#FFFFFFFA" FontSize="15"/>
+        <TextBlock x:Name="_speed" HorizontalAlignment="Left" Margin="222,128,-88,0" TextWrapping="Wrap" Text="23" VerticalAlignment="Top" Width="60" Height="28" Foreground="#FFFFFFFA" FontSize="15"/>
     </Grid>
 </Window>
