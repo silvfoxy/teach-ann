@@ -63,7 +63,11 @@ namespace TetrisWpf
                     rectangle.Margin = new Thickness(1, 1, 0, 0);
                     _uniformGrid.Children.Add(rectangle);
                 }
+            if (DispatcherTimer.Interval != TimeSpan.FromSeconds(Game.SpeedInSeconds))
+                DispatcherTimer.Interval = TimeSpan.FromSeconds(Game.SpeedInSeconds);
             _score.Text = Game.Score.ToString();
+            _level.Text = Game.Level.ToString();
+            _speed.Text = Game.SpeedInSeconds.ToString();
         }
 
         private void MainWindow_OnKeyDown(object sender, KeyEventArgs e)
